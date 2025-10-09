@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#14b8a6" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="MrigaAayuvets - Professional Veterinary Home Services in Mumbai. 24/7 emergency pet care, home visits, vaccinations, surgery, and complete pet healthcare at your doorstep." />
+    <meta name="keywords" content="veterinary, pet care, home service, dog doctor, cat doctor, pet hospital, Mumbai vet, emergency pet care, pet vaccination, pet surgery, animal hospital" />
+    <meta name="author" content="MrigaAayuvets" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="MrigaAayuvets - Veterinary Home Services | 24/7 Pet Care" />
+    <meta property="og:description" content="Professional veterinary care at your doorstep. Expert vets, 24/7 emergency support, stress-free home visits for your beloved pets." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="%PUBLIC_URL%/static/images/logo.png" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MrigaAayuvets - Veterinary Home Services" />
+    <meta name="twitter:description" content="24/7 professional pet care at your doorstep in Mumbai" />
+    
+    <!-- Font Awesome -->
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
+      integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" 
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" 
+    />
+    
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Page Title -->
+    <title>MrigaAayuvets - Veterinary Home Services | 24/7 Pet Care in Mumbai</title>
+    
+    <!-- Inline CSS for Veterinary Loader -->
+    <style>
+      /* Loading Screen - Veterinary Theme */
+      #loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #0f766e 0%, #14b8a6 50%, #5eead4 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+        overflow: hidden;
+      }
+      
+      #loading-screen.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* Animated Background Elements */
+      .bg-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.1;
+        background-image: 
+          radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        animation: bgMove 20s ease-in-out infinite;
+      }
+
+      @keyframes bgMove {
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(50px, 50px); }
+      }
+
+      /* Logo Container */
+      .loader-logo {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        margin-bottom: 30px;
+      }
+
+      /* Rotating Ring */
+      .loader-ring {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 4px solid transparent;
+        border-top: 4px solid #5eead4;
+        border-right: 4px solid #2dd4bf;
+        border-radius: 50%;
+        animation: rotate 2s linear infinite;
+      }
+
+      .loader-ring:nth-child(2) {
+        width: 90%;
+        height: 90%;
+        top: 5%;
+        left: 5%;
+        border-top: 4px solid #14b8a6;
+        border-right: 4px solid #0d9488;
+        animation: rotate 1.5s linear infinite reverse;
+      }
+
+      @keyframes rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      /* Logo Image */
+      .loader-image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: white;
+        padding: 5px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      .loader-image img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      @keyframes pulse {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); }
+        50% { transform: translate(-50%, -50%) scale(1.1); }
+      }
+
+      /* Paw Prints Animation */
+      .paw-prints {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+      }
+
+      .paw {
+        position: absolute;
+        font-size: 30px;
+        opacity: 0;
+        animation: pawWalk 3s ease-in-out infinite;
+      }
+
+      .paw:nth-child(1) {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+
+      .paw:nth-child(2) {
+        top: 30%;
+        right: 15%;
+        animation-delay: 0.5s;
+      }
+
+      .paw:nth-child(3) {
+        bottom: 25%;
+        left: 20%;
+        animation-delay: 1s;
+      }
+
+      .paw:nth-child(4) {
+        bottom: 35%;
+        right: 10%;
+        animation-delay: 1.5s;
+      }
+
+      @keyframes pawWalk {
+        0% { opacity: 0; transform: translateY(20px) scale(0.8); }
+        50% { opacity: 0.6; transform: translateY(0) scale(1); }
+        100% { opacity: 0; transform: translateY(-20px) scale(0.8); }
+      }
+
+      /* Medical Cross */
+      .medical-cross {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        margin: 20px auto;
+      }
+
+      .medical-cross::before,
+      .medical-cross::after {
+        content: '';
+        position: absolute;
+        background: white;
+        border-radius: 2px;
+      }
+
+      .medical-cross::before {
+        width: 8px;
+        height: 40px;
+        left: 16px;
+        animation: crossPulse 1.5s ease-in-out infinite;
+      }
+
+      .medical-cross::after {
+        width: 40px;
+        height: 8px;
+        top: 16px;
+        animation: crossPulse 1.5s ease-in-out infinite 0.75s;
+      }
+
+      @keyframes crossPulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(0.9); }
+      }
+
+      /* Heartbeat Line */
+      .heartbeat {
+        width: 200px;
+        height: 60px;
+        position: relative;
+        margin: 20px auto;
+      }
+
+      .heartbeat svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      .heartbeat-line {
+        stroke: white;
+        stroke-width: 3;
+        fill: none;
+        stroke-dasharray: 500;
+        stroke-dashoffset: 500;
+        animation: heartbeatAnim 2s ease-in-out infinite;
+      }
+
+      @keyframes heartbeatAnim {
+        0% { stroke-dashoffset: 500; }
+        100% { stroke-dashoffset: 0; }
+      }
+
+      /* Loading Text */
+      .loading-text {
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-top: 20px;
+        text-align: center;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .loading-subtitle {
+        color: rgba(255, 255, 255, 0.9);
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+        margin-top: 10px;
+        text-align: center;
+        animation: fadeInOut 2s ease-in-out infinite;
+      }
+
+      @keyframes fadeInOut {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+
+      /* Loading Dots */
+      .loading-dots {
+        display: inline-flex;
+        gap: 8px;
+        margin-left: 5px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        background: white;
+        border-radius: 50%;
+        animation: dotBounce 1.4s ease-in-out infinite;
+      }
+
+      .dot:nth-child(2) { animation-delay: 0.2s; }
+      .dot:nth-child(3) { animation-delay: 0.4s; }
+
+      @keyframes dotBounce {
+        0%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-10px); }
+      }
+
+      /* Prevent Flash of Unstyled Content */
+      body {
+        margin: 0;
+        font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+      }
+      
+      body.loading {
+        overflow: hidden;
+      }
+
+      /* Responsive */
+      @media (max-width: 640px) {
+        .loader-logo {
+          width: 100px;
+          height: 100px;
+        }
+
+        .loader-image {
+          width: 60px;
+          height: 60px;
+        }
+
+        .loading-text {
+          font-size: 1.25rem;
+        }
+
+        .loading-subtitle {
+          font-size: 0.875rem;
+        }
+
+        .paw {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+  
+  <body class="loading">
+    <noscript>
+      <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+        <h1>⚠️ JavaScript Required</h1>
+        <p>You need to enable JavaScript to run this application.</p>
+        <p>Please enable JavaScript in your browser settings and refresh the page.</p>
+      </div>
+    </noscript>
+    
+    <!-- Veterinary Loading Screen -->
+    <div id="loading-screen">
+      <!-- Background Pattern -->
+      <div class="bg-pattern"></div>
+
+      <!-- Animated Paw Prints -->
+      <div class="paw-prints">
+        <div class="paw">🐾</div>
+        <div class="paw">🐾</div>
+        <div class="paw">🐾</div>
+        <div class="paw">🐾</div>
+      </div>
+
+      <!-- Logo with Rotating Rings -->
+      <div class="loader-logo">
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
+        <div class="loader-image">
+          <img src="%PUBLIC_URL%/static/images/logo.png" alt="MrigaAayuvets" />
+        </div>
+      </div>
+
+      <!-- Medical Cross -->
+      <div class="medical-cross"></div>
+
+      <!-- Heartbeat Line -->
+      <div class="heartbeat">
+        <svg viewBox="0 0 200 60">
+          <polyline 
+            class="heartbeat-line" 
+            points="0,30 20,30 25,20 30,40 35,30 40,30 45,25 50,35 55,30 200,30"
+          />
+        </svg>
+      </div>
+
+      <!-- Loading Text -->
+      <p class="loading-text">
+        MrigaAayuvets
+        <span class="loading-dots">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </span>
+      </p>
+      <p class="loading-subtitle">🐾 Professional Veterinary Care 🏥</p>
+    </div>
+    
+    <!-- React Root -->
+    <div id="root"></div>
+    
+    <!-- Loading Screen Script -->
+    <script>
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const loadingScreen = document.getElementById('loading-screen');
+          const body = document.body;
+          
+          if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+            body.classList.remove('loading');
+            
+            setTimeout(function() {
+              if (loadingScreen.parentNode) {
+                loadingScreen.parentNode.removeChild(loadingScreen);
+              }
+            }, 500);
+          }
+        }, 1500);
+      });
+      
+      setTimeout(function() {
+        const loadingScreen = document.getElementById('loading-screen');
+        const body = document.body;
+        
+        if (loadingScreen && !loadingScreen.classList.contains('hidden')) {
+          loadingScreen.classList.add('hidden');
+          body.classList.remove('loading');
+        }
+      }, 4000);
+    </script>
+  </body>
+</html>
