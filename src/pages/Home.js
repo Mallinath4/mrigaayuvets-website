@@ -117,7 +117,7 @@ function Home() {
     {
       name: 'Dr. Ankit Chavan',
       role: 'BVSC & AH',
-      experience: '5+ years treating  birds, rabbits, and small mammals with specialized care protocols.',
+      experience: '2+ years experience in small animals.',
       image: '/static/images/Aniket.jpg',
       gradient: 'from-purple-50 to-pink-50',
       roleColor: 'text-purple-600'
