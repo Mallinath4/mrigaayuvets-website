@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import DiwaliPopup from '../components/DiwaliPopup';
 import { servicesData } from '../data/siteData';
 
 // CountUp Component - Fixed ESLint warning
@@ -11,13 +12,13 @@ function CountUp({ end, duration = 2, suffix = '' }) {
   const countRef = useRef(null);
 
   useEffect(() => {
-    const currentRef = countRef.current; // Store ref value
+    const currentRef = countRef.current;
     
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && !hasAnimated) {
           setHasAnimated(true);
-          const increment = end / (duration * 60); // 60 fps
+          const increment = end / (duration * 60);
           let current = 0;
           const timer = setInterval(() => {
             current += increment;
@@ -53,15 +54,15 @@ function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Rest of your code stays the same...
+  // SEO-OPTIMIZED Hero Slides with Keywords
   const heroSlides = [
     {
       image: 'https://images.unsplash.com/photo-1530041539828-114de669390e?w=1920&q=80',
       imageDesktop: 'https://images.unsplash.com/photo-1530041539828-114de669390e?w=1920&q=80',
       imageMobile: 'https://images.unsplash.com/photo-1530041539828-114de669390e?w=1080&q=80',
-      title: 'Care for your pets,',
-      titleHighlight: 'like family',
-      description: 'Providing high-quality veterinary care for your furry friends with love and expertise',
+      title: 'Best Veterinary Services At Home in Mumbai',
+      titleHighlight: '24/7 Emergency Pet Care',
+      description: 'Professional veterinary home services in Mumbai - Expert dog doctors, cat specialists, and 24/7 emergency care at your doorstep',
       buttonText: 'Book Appointment',
       buttonLink: '/appointment'
     },
@@ -69,9 +70,9 @@ function Home() {
       image: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1920&q=80',
       imageDesktop: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1920&q=80',
       imageMobile: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1080&q=80',
-      title: 'Expert',
-      titleHighlight: 'Veterinary Care',
-      description: 'Professional treatment at your doorstep with certified specialists',
+      title: 'Expert Veterinarians',
+      titleHighlight: 'Home Visit Services',
+      description: 'Certified pet doctors providing professional treatment, vaccinations, surgery & complete animal healthcare at home',
       buttonText: 'Our Services',
       buttonLink: '/services'
     },
@@ -79,9 +80,9 @@ function Home() {
       image: 'https://images.unsplash.com/photo-1415369629372-26f2fe60c467?w=1920&q=80',
       imageDesktop: 'https://images.unsplash.com/photo-1415369629372-26f2fe60c467?w=1920&q=80',
       imageMobile: 'https://images.unsplash.com/photo-1415369629372-26f2fe60c467?w=1080&q=80',
-      title: '24/7',
-      titleHighlight: 'Emergency Care',
-      description: 'Always here when you need us most - Day or night',
+      title: '24/7 Emergency',
+      titleHighlight: 'Pet Hospital',
+      description: 'Round-the-clock emergency veterinary care for dogs, cats & all pets - Always available when your pet needs urgent help',
       buttonText: 'Emergency Contact',
       buttonLink: '/contact'
     },
@@ -89,9 +90,9 @@ function Home() {
       image: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=1920&q=80',
       imageDesktop: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=1920&q=80',
       imageMobile: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=1080&q=80',
-      title: 'Home Visit',
-      titleHighlight: 'Service',
-      description: 'Stress-free care in your pet\'s comfort zone',
+      title: 'Affordable Pet Care',
+      titleHighlight: 'Home Visit Services',
+      description: 'Stress-free veterinary care at your home - No clinic visits needed, professional treatment in your pet\'s comfort zone',
       buttonText: 'Learn More',
       buttonLink: '/about'
     }
@@ -100,8 +101,8 @@ function Home() {
   const doctors = [
     {
       name: 'Dr. Siddheshwar Khonde',
-      role: 'Chief Veterinary Surgeon',
-      experience: '5+ years of experience in veterinary medicine with specialization in small animal surgery and emergency care.',
+      role: 'BVSC & AH',
+      experience: '5+ years of experience in veterinary practise with specialization in small animal and emergency care.',
       image: '/static/images/siddhu.png',
       gradient: 'from-blue-50 to-indigo-50',
       roleColor: 'text-blue-600'
@@ -116,8 +117,8 @@ function Home() {
     },
     {
       name: 'Dr. Ankit Chavan',
-      role: 'Exotic & Small Animal Specialist',
-      experience: '5+ years treating exotic pets, birds, rabbits, and small mammals with specialized care protocols.',
+      role: 'BVSC & AH',
+      experience: '2+ years experience in small animals treatment and budding veterinary pathologist.',
       image: '/static/images/Aniket.jpg',
       gradient: 'from-purple-50 to-pink-50',
       roleColor: 'text-purple-600'
@@ -126,7 +127,6 @@ function Home() {
 
   const services = Object.values(servicesData).slice(0, 6);
 
-  // Fixed auto-slide effect
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
@@ -162,10 +162,9 @@ function Home() {
   return (
     <div className="bg-gray-50">
       <Navbar />
-
-      {/* Hero Slider - Fixed and Working */}
+<DiwaliPopup />
+      {/* SEO-Optimized Hero Slider */}
       <section id="hero" className="relative h-screen max-h-[900px] min-h-[600px] overflow-hidden bg-gray-900 group">
-        {/* Slides Container */}
         <div className="absolute inset-0">
           {heroSlides.map((slide, index) => (
             <div
@@ -174,44 +173,38 @@ function Home() {
                 currentSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0'
               }`}
             >
-              {/* Desktop Image */}
               <picture className="hidden md:block absolute inset-0">
                 <img 
                   src={slide.imageDesktop}
-                  alt={slide.title}
+                  alt={`${slide.title} - MrigaAayuvets Mumbai`}
                   className="w-full h-full object-cover"
                   loading={index === 0 ? "eager" : "lazy"}
                 />
               </picture>
 
-              {/* Mobile Image */}
               <picture className="block md:hidden absolute inset-0">
                 <img 
                   src={slide.imageMobile}
-                  alt={slide.title}
+                  alt={`${slide.title} - Pet Hospital Mumbai`}
                   className="w-full h-full object-cover"
                   loading={index === 0 ? "eager" : "lazy"}
                 />
               </picture>
 
-              {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/70"></div>
             </div>
           ))}
         </div>
 
-        {/* Content Overlay */}
         <div className="relative z-20 h-full flex items-center justify-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="space-y-6 sm:space-y-8">
-              {/* Badge */}
               <div className="inline-block animate-fadeIn">
                 <div className="bg-white/10 backdrop-blur-md px-4 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-bold border border-white/20 text-white shadow-2xl">
-                  ✨ Welcome to MrigaAayuvets
+                  ✨ Mumbai's Most Trusted Veterinary Clinic
                 </div>
               </div>
 
-              {/* Title */}
               <div className="animate-fadeIn" style={{ animationDelay: '0.1s' }}>
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-tight mb-4">
                   {heroSlides[currentSlide].title}
@@ -222,18 +215,17 @@ function Home() {
                 </h1>
               </div>
 
-              {/* Description */}
               <div className="animate-fadeIn" style={{ animationDelay: '0.2s' }}>
                 <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
                   {heroSlides[currentSlide].description}
                 </p>
               </div>
 
-              {/* CTA Button */}
               <div className="animate-fadeIn" style={{ animationDelay: '0.3s' }}>
                 <Link
                   to={heroSlides[currentSlide].buttonLink}
                   className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 hover:from-blue-600 hover:via-indigo-600 hover:to-purple-600 text-white font-bold text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-105"
+                  aria-label="Book veterinary appointment online"
                 >
                   <span>{heroSlides[currentSlide].buttonText}</span>
                   <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -245,7 +237,6 @@ function Home() {
           </div>
         </div>
 
-        {/* Navigation Arrows - Visible on hover */}
         <button
           onClick={prevSlide}
           className="absolute left-4 sm:left-6 lg:left-8 top-1/2 transform -translate-y-1/2 z-30 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white p-3 sm:p-4 rounded-full transition-all duration-300 shadow-2xl border border-white/20 opacity-0 group-hover:opacity-100"
@@ -266,7 +257,6 @@ function Home() {
           </svg>
         </button>
 
-        {/* Dot Indicators */}
         <div className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 z-30 flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-md px-4 sm:px-6 py-3 sm:py-4 rounded-full border border-white/20 shadow-2xl">
           {heroSlides.map((_, index) => (
             <button
@@ -282,13 +272,131 @@ function Home() {
           ))}
         </div>
 
-        {/* Slide Counter - Mobile */}
         <div className="md:hidden absolute top-4 right-4 z-30 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 text-white text-sm font-bold shadow-lg">
           {currentSlide + 1} / {heroSlides.length}
         </div>
       </section>
 
-      {/* Stats Bar - Smaller Icons with Animated Counter */}
+      {/* 🪔 DIWALI SPECIAL BANNER 🪔 */}
+      <section className="relative bg-gradient-to-r from-orange-600 via-red-600 to-orange-600 py-12 sm:py-16 overflow-hidden">
+        {/* Animated Background Pattern */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 left-0 w-full h-full" style={{
+            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px)',
+            backgroundSize: '50px 50px',
+            animation: 'twinkle 3s ease-in-out infinite'
+          }}></div>
+        </div>
+
+        {/* Floating Diyas */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-10 left-1/4 text-6xl animate-bounce">🪔</div>
+          <div className="absolute top-20 right-1/4 text-6xl animate-bounce" style={{ animationDelay: '0.5s' }}>🪔</div>
+          <div className="absolute bottom-10 left-1/3 text-5xl animate-bounce" style={{ animationDelay: '1s' }}>✨</div>
+          <div className="absolute bottom-20 right-1/3 text-5xl animate-bounce" style={{ animationDelay: '1.5s' }}>✨</div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center">
+            {/* Badge */}
+            <div className="inline-block bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-white/30">
+              <span className="text-white font-bold text-sm uppercase tracking-wide">
+                🎆 Diwali Special Offer 2025 🎆
+              </span>
+            </div>
+
+            {/* Main Heading */}
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+              Celebrate Diwali with<br />
+              <span className="bg-white text-orange-600 px-6 py-2 rounded-2xl inline-block mt-2">
+                25% OFF
+              </span>
+              <br />
+              on All Pet Care Services!
+            </h2>
+
+            {/* Subheading */}
+            <p className="text-xl sm:text-2xl text-orange-100 mb-8 max-w-3xl mx-auto">
+              🐾 Keep your furry friends healthy this festive season with our exclusive Diwali packages!
+            </p>
+
+            {/* Offer Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 max-w-5xl mx-auto">
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-white transform hover:scale-105 transition duration-300">
+                <div className="text-4xl mb-3">💉</div>
+                <h3 className="font-bold text-lg mb-2">Vaccinations</h3>
+                <p className="text-orange-100 text-sm">Starting at ₹375</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-white transform hover:scale-105 transition duration-300">
+                <div className="text-4xl mb-3">🏠</div>
+                <h3 className="font-bold text-lg mb-2">Home Visits</h3>
+                <p className="text-orange-100 text-sm">Just ₹600</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-white transform hover:scale-105 transition duration-300">
+                <div className="text-4xl mb-3">✂️</div>
+                <h3 className="font-bold text-lg mb-2">Free Grooming</h3>
+                <p className="text-orange-100 text-sm">With any package</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-white transform hover:scale-105 transition duration-300">
+                <div className="text-4xl mb-3">🚨</div>
+                <h3 className="font-bold text-lg mb-2">24/7 Emergency</h3>
+                <p className="text-orange-100 text-sm">Always available</p>
+              </div>
+            </div>
+
+            {/* Countdown Timer */}
+            <div className="bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl p-6 mb-8 max-w-2xl mx-auto">
+              <p className="text-white font-bold text-lg mb-2">⏰ Offer Valid Until</p>
+              <p className="text-white text-3xl font-extrabold">November 5, 2025</p>
+              <p className="text-orange-100 mt-2">Use Code: <span className="bg-white text-orange-600 px-4 py-1 rounded-full font-bold">DIWALI25</span></p>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+              <Link
+                to="/appointment"
+                className="bg-white text-orange-600 hover:bg-orange-50 font-bold py-4 px-10 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 inline-flex items-center gap-3 text-lg"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Book Now & Save 25%
+              </Link>
+
+              <a
+                href="https://wa.me/918208657969?text=Hi! I want to know more about Diwali offer"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-10 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 inline-flex items-center gap-3 text-lg"
+              >
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                WhatsApp Us
+              </a>
+            </div>
+
+            {/* Pet Safety Message */}
+            <div className="bg-blue-500/20 backdrop-blur-sm border border-blue-300/30 rounded-2xl p-6 max-w-3xl mx-auto">
+              <p className="text-white font-semibold flex items-center justify-center gap-3 flex-wrap">
+                <span className="text-2xl">🐾</span>
+                <span><strong>Pet Safety Tip:</strong> Keep your pets calm and indoors during firecracker noise. We're here 24/7 for emergencies!</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* CSS Animation for Twinkle Effect */}
+        <style>{`
+          @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.5; }
+          }
+        `}</style>
+      </section>
+
+      {/* Stats Bar - With Keywords */}
       <section className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white py-8 sm:py-12 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl"></div>
@@ -297,7 +405,6 @@ function Home() {
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-            {/* Happy Pets - SVG Icon */}
             <div className="text-center transform hover:scale-110 transition-transform duration-300">
               <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-white/20 rounded-full mb-3">
                 <svg className="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -307,10 +414,9 @@ function Home() {
               <div className="text-3xl sm:text-4xl font-extrabold mb-1">
                 <CountUp end={500} duration={2.5} suffix="+" />
               </div>
-              <p className="text-sm sm:text-base text-blue-100">Happy Pets</p>
+              <p className="text-sm sm:text-base text-blue-100">Happy Pet Parents</p>
             </div>
 
-            {/* Years Experience - SVG Icon */}
             <div className="text-center transform hover:scale-110 transition-transform duration-300">
               <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-white/20 rounded-full mb-3">
                 <svg className="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -323,7 +429,6 @@ function Home() {
               <p className="text-sm sm:text-base text-blue-100">Years Experience</p>
             </div>
 
-            {/* Emergency Care - SVG Icon */}
             <div className="text-center transform hover:scale-110 transition-transform duration-300">
               <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-white/20 rounded-full mb-3">
                 <svg className="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -331,10 +436,9 @@ function Home() {
                 </svg>
               </div>
               <div className="text-3xl sm:text-4xl font-extrabold mb-1">24/7</div>
-              <p className="text-sm sm:text-base text-blue-100">Emergency Care</p>
+              <p className="text-sm sm:text-base text-blue-100">Emergency Available</p>
             </div>
 
-            {/* Home Service - SVG Icon */}
             <div className="text-center transform hover:scale-110 transition-transform duration-300">
               <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-white/20 rounded-full mb-3">
                 <svg className="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -344,24 +448,24 @@ function Home() {
               <div className="text-3xl sm:text-4xl font-extrabold mb-1">
                 <CountUp end={100} duration={2.5} suffix="%" />
               </div>
-              <p className="text-sm sm:text-base text-blue-100">Home Service</p>
+              <p className="text-sm sm:text-base text-blue-100">Home Visits</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Services Section - SEO Optimized */}
       <section id="services" className="py-16 sm:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <div className="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              WHAT WE OFFER
+              VETERINARY SERVICES IN MUMBAI
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 text-gray-800">
-              Our <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Services</span>
+              Professional Pet Care <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Services</span>
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-              Comprehensive veterinary care delivered with expertise and compassion
+              Comprehensive veterinary care for dogs, cats & all pets - Home visits, emergency care, vaccinations & surgery in Mumbai
             </p>
           </div>
 
@@ -382,7 +486,7 @@ function Home() {
                 } p-2 group-hover:scale-110 transition-transform duration-300`}>
                   <img 
                     src={service.image} 
-                    alt={service.title}
+                    alt={`${service.title} - Veterinary Service Mumbai`}
                     className="h-full w-full object-cover rounded-full"
                   />
                 </div>
@@ -397,6 +501,7 @@ function Home() {
                     index % 3 === 1 ? 'from-indigo-600 to-blue-600' : 
                     'from-purple-600 to-pink-600'
                   } bg-clip-text text-transparent hover:gap-3 transition-all duration-300`}
+                  aria-label={`Learn more about ${service.title}`}
                 >
                   Learn More
                   <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -411,6 +516,7 @@ function Home() {
             <Link 
               to="/services" 
               className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-2"
+              aria-label="View all veterinary services"
             >
               View All Services
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -421,31 +527,31 @@ function Home() {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* About Section - SEO Keywords */}
       <section id="about" className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <div className="inline-block bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                WHO WE ARE
+                MUMBAI'S TRUSTED VETERINARY CLINIC
               </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 text-gray-800">
-                Your Pet's Health is Our <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Priority</span>
+                Your Pet's Health is Our <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Top Priority</span>
               </h2>
               <p className="text-gray-600 text-base sm:text-lg mb-6 leading-relaxed">
-                At <strong className="text-blue-600">MrigaAayuvets</strong>, we are dedicated to offering high-quality veterinary services with compassion. 
-                Our team consists of experienced professionals passionate about animal health.
+                At <strong className="text-blue-600">MrigaAayuvets</strong>, we provide professional veterinary home services in Mumbai with expert care for dogs, cats, and all pets. Our experienced veterinarians offer 24/7 emergency care, home visit services, vaccinations, surgery, and complete animal healthcare at affordable prices.
               </p>
               <p className="text-gray-600 text-base sm:text-lg mb-8 leading-relaxed">
-                From preventative care to emergency treatments, we ensure your pet gets the best care possible – right at your doorstep.
+                From preventative care and regular check-ups to emergency treatments and specialized surgeries, we ensure your pet receives the best possible care – right at your doorstep in Mumbai. No stressful clinic visits required!
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link 
                   to="/about" 
                   className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2"
+                  aria-label="Learn more about MrigaAayuvets"
                 >
-                  Learn More
+                  Learn More About Us
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                   </svg>
@@ -453,11 +559,12 @@ function Home() {
                 <Link 
                   to="/appointment" 
                   className="bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2"
+                  aria-label="Book veterinary appointment"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                   </svg>
-                  Book Now
+                  Book Appointment Now
                 </Link>
               </div>
             </div>
@@ -467,7 +574,7 @@ function Home() {
                 <div className="absolute -inset-4 bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl blur-2xl opacity-20"></div>
                 <img 
                   src="/static/images/slide6.jpeg" 
-                  alt="Veterinary Clinic" 
+                  alt="MrigaAayuvets Veterinary Clinic Mumbai - Professional Pet Care" 
                   className="relative rounded-2xl shadow-2xl w-full hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -481,13 +588,13 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <div className="inline-block bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              OUR EXPERTS
+              EXPERT VETERINARY DOCTORS
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 text-gray-800">
-              Meet Our <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Expert Team</span>
+              Meet Our <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Veterinary Specialists</span>
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-              Experienced veterinarians dedicated to your pet's health and well-being
+              Certified and experienced veterinarians in Mumbai dedicated to your pet's health and well-being
             </p>
           </div>
 
@@ -501,7 +608,7 @@ function Home() {
                   <div className="relative inline-block">
                     <img
                       src={doctor.image}
-                      alt={doctor.name}
+                      alt={`${doctor.name} - ${doctor.role} at MrigaAayuvets Mumbai`}
                       className="rounded-full h-32 w-32 mx-auto object-cover border-4 border-white shadow-lg group-hover:scale-110 transition-transform duration-300"
                     />
                     <div className="absolute -bottom-2 -right-2 bg-blue-500 text-white rounded-full p-2 shadow-lg">
@@ -519,21 +626,22 @@ function Home() {
           </div>
 
           <div className="text-center mt-12">
-            <p className="text-gray-600 mb-6">Need to consult with a specific specialist?</p>
+            <p className="text-gray-600 mb-6 text-lg">Need to consult with a veterinary specialist in Mumbai?</p>
             <Link
               to="/appointment"
               className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full shadow-xl transform hover:scale-105 transition-all duration-300 inline-flex items-center gap-2"
+              aria-label="Book consultation with veterinary specialist"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
               </svg>
-              Book a Consultation
+              Book Consultation Today
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Contact Cards */}
+      {/* Contact Section - SEO Keywords */}
       <section id="contact" className="py-16 sm:py-20 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
@@ -542,19 +650,20 @@ function Home() {
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4">Get In Touch 📞</h2>
-            <p className="text-base sm:text-lg text-blue-100">Contact us for appointments, questions, or emergencies</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4">Contact Veterinary Clinic Mumbai 📞</h2>
+            <p className="text-base sm:text-lg text-blue-100">24/7 Emergency Pet Care - Book Appointments, Questions & Urgent Help</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <a 
               href="tel:+918208657969" 
               className="bg-white/10 backdrop-blur-md hover:bg-white/20 p-6 sm:p-8 rounded-2xl text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl border border-white/20"
+              aria-label="Call MrigaAayuvets Mumbai"
             >
               <div className="text-5xl mb-4">📞</div>
-              <h4 className="font-bold text-lg mb-2">Phone Support</h4>
-              <p className="text-blue-100 text-sm mb-4">Direct consultation</p>
-              <span className="text-white font-bold">+91 8208657969</span>
+              <h4 className="font-bold text-lg mb-2">Call Veterinarian</h4>
+              <p className="text-blue-100 text-sm mb-4">Direct consultation with pet doctor</p>
+              <span className="text-white font-bold text-lg">+91 8208657969</span>
             </a>
 
             <a 
@@ -562,11 +671,12 @@ function Home() {
               target="_blank" 
               rel="noopener noreferrer" 
               className="bg-white/10 backdrop-blur-md hover:bg-white/20 p-6 sm:p-8 rounded-2xl text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl border border-white/20"
+              aria-label="WhatsApp MrigaAayuvets"
             >
               <div className="text-5xl mb-4">💬</div>
-              <h4 className="font-bold text-lg mb-2">WhatsApp Chat</h4>
-              <p className="text-blue-100 text-sm mb-4">Quick responses</p>
-              <span className="text-white font-bold">Start Chat</span>
+              <h4 className="font-bold text-lg mb-2">WhatsApp Pet Doctor</h4>
+              <p className="text-blue-100 text-sm mb-4">Quick responses & booking</p>
+              <span className="text-white font-bold">Chat Now</span>
             </a>
 
             <a 
@@ -574,10 +684,11 @@ function Home() {
               target="_blank" 
               rel="noopener noreferrer" 
               className="bg-white/10 backdrop-blur-md hover:bg-white/20 p-6 sm:p-8 rounded-2xl text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl border border-white/20"
+              aria-label="Emergency veterinary care Mumbai"
             >
               <div className="text-5xl mb-4">🚨</div>
-              <h4 className="font-bold text-lg mb-2">Emergency Care</h4>
-              <p className="text-blue-100 text-sm mb-4">24/7 Available</p>
+              <h4 className="font-bold text-lg mb-2">Emergency Pet Care</h4>
+              <p className="text-blue-100 text-sm mb-4">24/7 Available in Mumbai</p>
               <span className="text-white font-bold">Emergency Contact</span>
             </a>
           </div>

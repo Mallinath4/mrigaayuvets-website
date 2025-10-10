@@ -9,8 +9,8 @@ function About() {
   const doctors = [
     {
       name: 'Dr. Siddheshwar Khonde',
-      role: 'Chief Veterinary Surgeon',
-      experience: '5+ years of experience in veterinary medicine with specialization in small animal surgery and emergency care.',
+      role: 'BVSC & AH',
+      experience: '5+ years of experience in veterinary practise with specialization in small animal and emergency care.',
       image: '/static/images/siddhu.png',
       gradient: 'from-blue-50 to-indigo-50',
       roleColor: 'text-blue-600',
@@ -29,8 +29,8 @@ function About() {
     },
     {
       name: 'Dr. Ankit Chavan',
-      role: 'Exotic & Small Animal Specialist',
-      experience: '5+ years treating exotic pets, rabbits, and small mammals with specialized care protocols.',
+      role: 'BVSC & AH',
+      experience: '2+ years experience in small animals treatment and budding veterinary pathologist.',
       image: '/static/images/Aniket.jpg',
       gradient: 'from-purple-50 to-pink-50',
       roleColor: 'text-purple-600',

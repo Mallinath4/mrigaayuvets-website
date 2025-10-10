@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Gallery from './pages/Gallery';
+import DiwaliTopBar from './components/DiwaliTopBar';  // ✅ Already imported
 import Contact from './pages/Contact';
 import Blogs from './pages/Blogs';
 import BlogDetail from './pages/BlogDetail';
@@ -38,6 +39,9 @@ function App() {
   return (
     <Router>
       <div className="App">
+        {/* 🪔 ADD DIWALI TOP BAR HERE - Shows on ALL pages 🪔 */}
+        <DiwaliTopBar />
+        
         <Routes>
           {/* Main Routes */}
           <Route path="/" element={<Home />} />
