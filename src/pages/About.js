@@ -31,6 +31,7 @@ function About() {
       name: 'Dr. Ankit Chavan',
       role: 'BVSC & AH',
       experience: '2+ years experience in small animals treatment and budding veterinary pathologist.',
+
       image: '/static/images/Aniket.jpg',
       gradient: 'from-purple-50 to-pink-50',
       roleColor: 'text-purple-600',
