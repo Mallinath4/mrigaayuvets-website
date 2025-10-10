@@ -326,16 +326,16 @@ function Home() {
               <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-white transform hover:scale-105 transition duration-300">
                 <div className="text-4xl mb-3">💉</div>
                 <h3 className="font-bold text-lg mb-2">Vaccinations</h3>
-                <p className="text-orange-100 text-sm">Starting at ₹375</p>
+                <p className="text-orange-100 text-sm">Starting at ₹599-₹1299</p>
               </div>
               <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-white transform hover:scale-105 transition duration-300">
                 <div className="text-4xl mb-3">🏠</div>
                 <h3 className="font-bold text-lg mb-2">Home Visits</h3>
-                <p className="text-orange-100 text-sm">Just ₹600</p>
+                <p className="text-orange-100 text-sm">Just ₹700-₹1000</p>
               </div>
               <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-white transform hover:scale-105 transition duration-300">
                 <div className="text-4xl mb-3">✂️</div>
-                <h3 className="font-bold text-lg mb-2">Free Grooming</h3>
+                <h3 className="font-bold text-lg mb-2"> 10% Discount on Grooming</h3>
                 <p className="text-orange-100 text-sm">With any package</p>
               </div>
               <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-white transform hover:scale-105 transition duration-300">
