@@ -19,7 +19,7 @@ function About() {
     },
     {
       name: 'Dr. Ganesh Jagtap',
-      role: 'Internal Medicine Specialist',
+      role: 'BVSC & AH',
       experience: '5+ years specializing in pet internal medicine, cardiology, and preventive care for all breeds.',
       image: '/static/images/Ganesh.jpg',
       gradient: 'from-indigo-50 to-purple-50',
@@ -29,8 +29,13 @@ function About() {
     },
     {
       name: 'Dr. Ankit Chavan',
+<<<<<<< HEAD
       role: 'BVSC & AH',
       experience: '2+ years experience in small animals treatment and budding veterinary pathologist.',
+=======
+      role: 'Exotic & Small Animal Specialist',
+      experience: '2+ years experience in small animal treatment and budding veterinary pathologist.
+>>>>>>> 09e2bf9e89d1a93dbcc0c826722cf74e4c0301d1
       image: '/static/images/Aniket.jpg',
       gradient: 'from-purple-50 to-pink-50',
       roleColor: 'text-purple-600',
