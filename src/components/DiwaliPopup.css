@@ -1,0 +1,106 @@
+/* DiwaliPopup.css */
+.diwali-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.diwali-modal-content {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  position: relative;
+  max-width: 400px;
+  width: 90vw;
+}
+
+.close-btn {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  background: #ff3333;
+  border: none;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.close-btn:hover {
+  background: #cc0000;
+  transform: scale(1.1) rotate(90deg);
+}
+
+.diwali-header {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #E65100;
+  margin-bottom: 8px;
+}
+
+.diwali-offer {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.diwali-code {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #D84315;
+  background: #fffbe8;
+  padding: 6px 16px;
+  display: inline-block;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.book-now-btn {
+  background: #FF9800;
+  color: #fff;
+  font-size: 1rem;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.book-now-btn:hover {
+  background: #E65100;
+}
+
+.whatsapp-btn {
+  background: #25D366;
+  color: #fff;
+  font-size: 1rem;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+  width: 100%;
+}
+
+.whatsapp-btn:hover {
+  background: #1da851;
+}
