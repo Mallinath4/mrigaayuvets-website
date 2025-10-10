@@ -92,15 +92,15 @@ function DiwaliPopup() {
             <div className="space-y-1 mb-2 text-xs text-left">
               <div className="flex items-center gap-1 bg-green-50 py-1 px-2 rounded">
                 <span className="text-green-600 text-sm">✓</span>
-                <span className="text-gray-800"><strong>Vaccination:</strong> ₹375+</span>
+                <span className="text-gray-800"><strong>Vaccination:</strong> ₹599-₹1299</span>
               </div>
               <div className="flex items-center gap-1 bg-blue-50 py-1 px-2 rounded">
                 <span className="text-blue-600 text-sm">✓</span>
-                <span className="text-gray-800"><strong>Home Visit:</strong> ₹600</span>
+                <span className="text-gray-800"><strong>Home Visit:</strong> ₹700-₹1000</span>
               </div>
               <div className="flex items-center gap-1 bg-purple-50 py-1 px-2 rounded">
                 <span className="text-purple-600 text-sm">✓</span>
-                <span className="text-gray-800"><strong>Free Grooming</strong></span>
+                <span className="text-gray-800"><strong>10% Discount on Grooming</strong></span>
               </div>
               <div className="flex items-center gap-1 bg-red-50 py-1 px-2 rounded">
                 <span className="text-red-600 text-sm">✓</span>
