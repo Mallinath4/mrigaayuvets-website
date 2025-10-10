@@ -29,13 +29,8 @@ function About() {
     },
     {
       name: 'Dr. Ankit Chavan',
-<<<<<<< HEAD
       role: 'BVSC & AH',
       experience: '2+ years experience in small animals treatment and budding veterinary pathologist.',
-=======
-      role: 'Exotic & Small Animal Specialist',
-      experience: '2+ years experience in small animal treatment and budding veterinary pathologist.
->>>>>>> 09e2bf9e89d1a93dbcc0c826722cf74e4c0301d1
       image: '/static/images/Aniket.jpg',
       gradient: 'from-purple-50 to-pink-50',
       roleColor: 'text-purple-600',
