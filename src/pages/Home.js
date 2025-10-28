@@ -160,8 +160,8 @@ function Home() {
 const heroSlides = [
   {
     // Slide 1: Happy Golden Retriever - vibrant and welcoming
-    imageDesktop: 'https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=1920&q=85&fit=crop',
-    imageMobile: 'https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=1080&q=85&fit=crop',
+    imageDesktop: 'https://images.unsplash.com/photo-1634225994058-55d45be61d60?w=1920&q=85&fit=crop&crop=center',
+    imageMobile: 'https://images.unsplash.com/photo-1634225994058-55d45be61d60?w=1080&q=85&fit=crop&crop=center',
     title: 'Best Veterinary Services At Home in Mumbai',
     titleHighlight: 'Emergency Pet Care',
     description: 'Professional veterinary home services in Mumbai - Expert dog doctors, cat specialists, and emergency care at your doorstep',
@@ -170,8 +170,8 @@ const heroSlides = [
   },
   {
     // Slide 2: Adorable cat portrait - professional and beautiful
-    imageDesktop: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=1920&q=85&fit=crop',
-    imageMobile: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=1080&q=85&fit=crop',
+    imageDesktop: 'https://images.pexels.com/photos/6235241/pexels-photo-6235241.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    imageMobile: 'https://images.pexels.com/photos/6235241/pexels-photo-6235241.jpeg?auto=compress&cs=tinysrgb&w=1080',
     title: 'Expert Veterinarians',
     titleHighlight: 'Home Visit Services',
     description: 'Certified pet doctors providing professional treatment, vaccinations, surgery & complete animal healthcare at home',
