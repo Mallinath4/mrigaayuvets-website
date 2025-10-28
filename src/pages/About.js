@@ -5,51 +5,84 @@ import Footer from '../components/Footer';
 
 function About() {
   const [currentDoctorSlide, setCurrentDoctorSlide] = useState(0);
+  const [doctors, setDoctors] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const doctors = [
-    {
-      name: 'Dr. Siddheshwar Khonde',
-      role: 'BVSC & AH',
-      experience: '5+ years of experience in veterinary practise with specialization in small animal and emergency care.',
-      image: '/static/images/siddhu.png',
-      gradient: 'from-blue-50 to-indigo-50',
-      roleColor: 'text-blue-600',
-      tags: ['Surgery', 'Emergency Care'],
-      tagColors: ['bg-blue-100 text-blue-800', 'bg-cyan-100 text-cyan-800']
-    },
-    {
-      name: 'Dr. Ganesh Jagtap',
-      role: 'BVSC & AH',
-      experience: '5+ years specializing in pet internal medicine, cardiology, and preventive care for all breeds.',
-      image: '/static/images/Ganesh.jpg',
-      gradient: 'from-indigo-50 to-purple-50',
-      roleColor: 'text-indigo-600',
-      tags: ['Cardiology', 'Internal Med'],
-      tagColors: ['bg-indigo-100 text-indigo-800', 'bg-purple-100 text-purple-800']
-    },
-    {
-      name: 'Dr. Ankit Chavan',
-<<<<<<< HEAD
-      role: 'BVSC & AH',
-      experience: '2+ years experience in small animals treatment and budding veterinary pathologist.',
-=======
-      role: 'Exotic & Small Animal Specialist',
-      experience: '2+ years experience in small animal treatment and budding veterinary pathologist.
->>>>>>> 09e2bf9e89d1a93dbcc0c826722cf74e4c0301d1
-      image: '/static/images/Aniket.jpg',
-      gradient: 'from-purple-50 to-pink-50',
-      roleColor: 'text-purple-600',
-      tags: ['Exotic Pets', 'Rabbits'],
-      tagColors: ['bg-purple-100 text-purple-800', 'bg-pink-100 text-pink-800']
+  // ✅ Fetch doctors from API
+  useEffect(() => {
+    fetchDoctors();
+  }, []);
+
+  const fetchDoctors = async () => {
+    try {
+      const response = await fetch('/api/doctors');
+      if (response.ok) {
+        const data = await response.json();
+        // Map API data to match your existing structure
+        const mappedDoctors = data.doctors.map((doc, index) => ({
+          name: doc.name,
+          role: doc.qualification,
+          experience: doc.bio,
+          image: doc.image,
+          gradient: ['from-blue-50 to-indigo-50', 'from-indigo-50 to-purple-50', 'from-purple-50 to-pink-50'][index % 3],
+          roleColor: ['text-blue-600', 'text-indigo-600', 'text-purple-600'][index % 3],
+          tags: [doc.specialization, `${doc.experience}+ years`],
+          tagColors: [
+            ['bg-blue-100 text-blue-800', 'bg-cyan-100 text-cyan-800'],
+            ['bg-indigo-100 text-indigo-800', 'bg-purple-100 text-purple-800'],
+            ['bg-purple-100 text-purple-800', 'bg-pink-100 text-pink-800']
+          ][index % 3]
+        }));
+        setDoctors(mappedDoctors);
+      }
+    } catch (error) {
+      console.error('Error fetching doctors:', error);
+      // Fallback to default doctors if API fails
+      setDoctors([
+        {
+          name: 'Dr. Siddheshwar Khonde',
+          role: 'BVSC & AH',
+          experience: '5+ years of experience in veterinary practise with specialization in small animal and emergency care.',
+          image: '/static/images/siddhu.png',
+          gradient: 'from-blue-50 to-indigo-50',
+          roleColor: 'text-blue-600',
+          tags: ['Surgery', 'Emergency Care'],
+          tagColors: ['bg-blue-100 text-blue-800', 'bg-cyan-100 text-cyan-800']
+        },
+        {
+          name: 'Dr. Ganesh Jagtap',
+          role: 'BVSC & AH',
+          experience: '5+ years specializing in pet internal medicine, cardiology, and preventive care for all breeds.',
+          image: '/static/images/Ganesh.jpg',
+          gradient: 'from-indigo-50 to-purple-50',
+          roleColor: 'text-indigo-600',
+          tags: ['Cardiology', 'Internal Med'],
+          tagColors: ['bg-indigo-100 text-indigo-800', 'bg-purple-100 text-purple-800']
+        },
+        {
+          name: 'Dr. Ankit Chavan',
+          role: 'BVSC & AH',
+          experience: '2+ years experience in small animals treatment and budding veterinary pathologist.',
+          image: '/static/images/Aniket.jpg',
+          gradient: 'from-purple-50 to-pink-50',
+          roleColor: 'text-purple-600',
+          tags: ['Exotic Pets', 'Rabbits'],
+          tagColors: ['bg-purple-100 text-purple-800', 'bg-pink-100 text-pink-800']
+        }
+      ]);
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
 
   // Auto-slide effect
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentDoctorSlide((prev) => (prev + 1) % doctors.length);
-    }, 4000);
-    return () => clearInterval(interval);
+    if (doctors.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentDoctorSlide((prev) => (prev + 1) % doctors.length);
+      }, 4000);
+      return () => clearInterval(interval);
+    }
   }, [doctors.length]);
 
   const nextDoctor = () => {
@@ -78,7 +111,7 @@ function About() {
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 drop-shadow-lg animate-fade-in">
-            About MrigaAayuvets 🐾
+            About MrigAayuvets 🐾
           </h1>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed">
             Compassionate, professional, and stress-free veterinary care – right at your doorstep.
@@ -87,7 +120,7 @@ function About() {
           {/* Stats */}
           <div className="mt-10 sm:mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 hover:bg-white/20 transition">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold">500+</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold">3000+</div>
               <div className="text-xs sm:text-sm md:text-base mt-1 sm:mt-2">Happy Pets</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 hover:bg-white/20 transition">
@@ -95,7 +128,7 @@ function About() {
               <div className="text-xs sm:text-sm md:text-base mt-1 sm:mt-2">Years Experience</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 hover:bg-white/20 transition">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold">24/7</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold">100%</div>
               <div className="text-xs sm:text-sm md:text-base mt-1 sm:mt-2">Available</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 hover:bg-white/20 transition">
@@ -117,7 +150,7 @@ function About() {
               Your Pet's Health is Our <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Mission</span>
             </h2>
             <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-4">
-              At <strong className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">MrigaAayuvets</strong>, we are dedicated to delivering high-quality veterinary services with
+              At <strong className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">MrigAayuvets</strong>, we are dedicated to delivering high-quality veterinary services with
               compassion. Our team is passionate about animal health and strives to make every pet feel safe,
               comfortable, and cared for.
             </p>
@@ -257,7 +290,7 @@ function About() {
         </div>
       </section>
 
-      {/* Team Section - Responsive Slider */}
+      {/* Team Section - Responsive Slider with API Data */}
       <section className="py-12 sm:py-16 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-10 sm:mb-12">
@@ -270,76 +303,89 @@ function About() {
             </p>
           </div>
 
-          {/* Doctor Slider */}
-          <div className="relative overflow-hidden">
-            <div
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentDoctorSlide * 100}%)` }}
-            >
-              {doctors.map((doctor, index) => (
-                <div key={index} className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2 sm:px-4">
-                  <div className={`bg-gradient-to-br ${doctor.gradient} rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition duration-300 text-center h-full`}>
-                    <div className="relative mb-4 sm:mb-6">
-                      <div className="relative inline-block">
-                        <img
-                          src={doctor.image}
-                          alt={doctor.name}
-                          className="rounded-full h-24 w-24 sm:h-32 sm:w-32 mx-auto object-cover border-4 border-white shadow-lg"
-                        />
-                        <div className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 bg-blue-500 text-white rounded-full p-1.5 sm:p-2 shadow-lg">
-                          <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                          </svg>
+          {/* ✅ Loading State */}
+          {loading ? (
+            <div className="flex justify-center py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            </div>
+          ) : doctors.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-600">No doctors available at the moment.</p>
+            </div>
+          ) : (
+            <>
+              {/* Doctor Slider */}
+              <div className="relative overflow-hidden">
+                <div
+                  className="flex transition-transform duration-500 ease-in-out"
+                  style={{ transform: `translateX(-${currentDoctorSlide * 100}%)` }}
+                >
+                  {doctors.map((doctor, index) => (
+                    <div key={index} className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2 sm:px-4">
+                      <div className={`bg-gradient-to-br ${doctor.gradient} rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition duration-300 text-center h-full`}>
+                        <div className="relative mb-4 sm:mb-6">
+                          <div className="relative inline-block">
+                            <img
+                              src={doctor.image}
+                              alt={doctor.name}
+                              className="rounded-full h-24 w-24 sm:h-32 sm:w-32 mx-auto object-cover border-4 border-white shadow-lg"
+                            />
+                            <div className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 bg-blue-500 text-white rounded-full p-1.5 sm:p-2 shadow-lg">
+                              <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                        <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-800">{doctor.name}</h3>
+                        <p className={`${doctor.roleColor} font-semibold mb-3 text-sm sm:text-base`}>{doctor.role}</p>
+                        <p className="text-gray-600 text-xs sm:text-sm mb-4">{doctor.experience}</p>
+                        <div className="flex flex-wrap justify-center gap-2">
+                          {doctor.tags.map((tag, idx) => (
+                            <span key={idx} className={`${doctor.tagColors[idx]} text-xs px-2 sm:px-3 py-1 rounded-full font-medium`}>
+                              {tag}
+                            </span>
+                          ))}
                         </div>
                       </div>
                     </div>
-                    <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-800">{doctor.name}</h3>
-                    <p className={`${doctor.roleColor} font-semibold mb-3 text-sm sm:text-base`}>{doctor.role}</p>
-                    <p className="text-gray-600 text-xs sm:text-sm mb-4">{doctor.experience}</p>
-                    <div className="flex flex-wrap justify-center gap-2">
-                      {doctor.tags.map((tag, idx) => (
-                        <span key={idx} className={`${doctor.tagColors[idx]} text-xs px-2 sm:px-3 py-1 rounded-full font-medium`}>
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                  ))}
                 </div>
-              ))}
-            </div>
 
-            {/* Navigation Buttons */}
-            <button
-              onClick={prevDoctor}
-              className="hidden sm:block absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 z-10 bg-white shadow-xl hover:shadow-2xl text-gray-700 p-3 rounded-full transition duration-300 hover:bg-blue-50 hover:scale-110"
-            >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
-              </svg>
-            </button>
+                {/* Navigation Buttons */}
+                <button
+                  onClick={prevDoctor}
+                  className="hidden sm:block absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 z-10 bg-white shadow-xl hover:shadow-2xl text-gray-700 p-3 rounded-full transition duration-300 hover:bg-blue-50 hover:scale-110"
+                >
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+                  </svg>
+                </button>
 
-            <button
-              onClick={nextDoctor}
-              className="hidden sm:block absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 z-10 bg-white shadow-xl hover:shadow-2xl text-gray-700 p-3 rounded-full transition duration-300 hover:bg-blue-50 hover:scale-110"
-            >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </button>
-          </div>
+                <button
+                  onClick={nextDoctor}
+                  className="hidden sm:block absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 z-10 bg-white shadow-xl hover:shadow-2xl text-gray-700 p-3 rounded-full transition duration-300 hover:bg-blue-50 hover:scale-110"
+                >
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </button>
+              </div>
 
-          {/* Slider Indicators */}
-          <div className="flex justify-center mt-6 sm:mt-8 space-x-2">
-            {doctors.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition duration-300 ${
-                  currentDoctorSlide === index ? 'bg-blue-600 w-6 sm:w-8' : 'bg-blue-200 hover:bg-blue-400'
-                }`}
-              />
-            ))}
-          </div>
+              {/* Slider Indicators */}
+              <div className="flex justify-center mt-6 sm:mt-8 space-x-2">
+                {doctors.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition duration-300 ${
+                      currentDoctorSlide === index ? 'bg-blue-600 w-6 sm:w-8' : 'bg-blue-200 hover:bg-blue-400'
+                    }`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </section>
 

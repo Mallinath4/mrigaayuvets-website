@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Gallery from './pages/Gallery';
-import DiwaliTopBar from './components/DiwaliTopBar';  // ✅ Already imported
 import Contact from './pages/Contact';
 import Blogs from './pages/Blogs';
 import BlogDetail from './pages/BlogDetail';
@@ -33,14 +32,18 @@ import SeniorPetCare from './pages/blogs/SeniorPetCare';
 import DogBreeds from './pages/blogs/DogBreeds';
 import PetEmergencies from './pages/blogs/PetEmergencies';
 
+// ✅ ADD ADMIN IMPORTS
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
+
 import './App.css';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        {/* 🪔 ADD DIWALI TOP BAR HERE - Shows on ALL pages 🪔 */}
-        <DiwaliTopBar />
+       
+        
         
         <Routes>
           {/* Main Routes */}
@@ -81,6 +84,10 @@ function App() {
           <Route path="/services/xray-imaging" element={<XRayImaging />} />
           <Route path="/services/emergency-care" element={<EmergencyCare />} />
           <Route path="/services/nutrition-guidance" element={<NutritionGuidance />} />
+          
+          {/* ✅ ADMIN ROUTES - ADD THESE */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
           
           {/* 404 Not Found */}
           <Route path="*" element={<NotFound />} />

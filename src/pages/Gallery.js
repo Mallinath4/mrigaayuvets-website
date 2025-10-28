@@ -1,12 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { galleryImages } from '../data/siteData';
 
 function Gallery() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [filter, setFilter] = useState('all');
-  const images = galleryImages;
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // ✅ Fetch gallery images from API
+  useEffect(() => {
+    fetchGallery();
+  }, []);
+
+  const fetchGallery = async () => {
+    try {
+      const response = await fetch('/api/gallery');
+      if (response.ok) {
+        const data = await response.json();
+        setImages(data.images);
+      }
+    } catch (error) {
+      console.error('Error fetching gallery:', error);
+      // Fallback to empty array if API fails
+      setImages([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const filters = [
     { id: 'all', name: 'All Photos', icon: '📸' },
@@ -25,13 +46,13 @@ function Gallery() {
   };
 
   const nextImage = () => {
-    const currentIndex = images.findIndex(img => img.id === selectedImage.id);
+    const currentIndex = images.findIndex(img => img._id === selectedImage._id);
     const nextIndex = (currentIndex + 1) % images.length;
     setSelectedImage(images[nextIndex]);
   };
 
   const prevImage = () => {
-    const currentIndex = images.findIndex(img => img.id === selectedImage.id);
+    const currentIndex = images.findIndex(img => img._id === selectedImage._id);
     const prevIndex = (currentIndex - 1 + images.length) % images.length;
     setSelectedImage(images[prevIndex]);
   };
@@ -110,52 +131,70 @@ function Gallery() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {images.map((image, index) => (
-            <div
-              key={image.id}
-              className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500 ease-in-out cursor-pointer"
-              onClick={() => openLightbox(image)}
-            >
-              {/* Image */}
-              <div className="relative overflow-hidden aspect-square">
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
-                <img
-                  src={`/static/gallery/${image.image_path}`}
-                  alt={`Pet Gallery ${index + 1}`}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  loading="lazy"
-                />
-                
-                {/* Overlay Content */}
-                <div className="absolute inset-0 flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
-                  <div className="text-white">
-                    <p className="text-sm font-semibold">View Full Image</p>
+        {/* ✅ Loading State */}
+        {loading ? (
+          <div className="flex justify-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        ) : images.length === 0 ? (
+          <div className="text-center py-12">
+            <div className="text-6xl mb-4">📸</div>
+            <p className="text-gray-600 text-lg">No images in the gallery yet.</p>
+            <p className="text-gray-500 text-sm mt-2">Check back soon for photos of our happy patients!</p>
+          </div>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+              {images.map((image, index) => (
+                <div
+                  key={image._id}
+                  className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500 ease-in-out cursor-pointer"
+                  onClick={() => openLightbox(image)}
+                >
+                  {/* Image */}
+                  <div className="relative overflow-hidden aspect-square">
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                    <img
+                      src={image.url}
+                      alt={image.title || `Pet Gallery ${index + 1}`}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      loading="lazy"
+                    />
+                    
+                    {/* Overlay Content */}
+                    <div className="absolute inset-0 flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
+                      <div className="text-white">
+                        <p className="text-sm font-semibold">{image.title || 'View Full Image'}</p>
+                        {image.description && (
+                          <p className="text-xs text-gray-200 mt-1">{image.description}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Number Badge */}
+                    <div className={`absolute top-3 right-3 bg-gradient-to-r ${
+                      index % 3 === 0 ? 'from-blue-500 to-cyan-500' : 
+                      index % 3 === 1 ? 'from-purple-500 to-pink-500' : 
+                      'from-indigo-500 to-blue-500'
+                    } text-white w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold shadow-lg z-20`}>
+                      {index + 1}
+                    </div>
                   </div>
                 </div>
-
-                {/* Number Badge */}
-                <div className={`absolute top-3 right-3 bg-gradient-to-r ${
-                  index % 3 === 0 ? 'from-blue-500 to-cyan-500' : 
-                  index % 3 === 1 ? 'from-purple-500 to-pink-500' : 
-                  'from-indigo-500 to-blue-500'
-                } text-white w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold shadow-lg z-20`}>
-                  {index + 1}
-                </div>
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        {/* Load More Button */}
-        <div className="text-center mt-12">
-          <button className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-2">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
-            </svg>
-            Load More Photos
-          </button>
-        </div>
+            {/* Load More Button - Hidden for now, can be activated later */}
+            {/* <div className="text-center mt-12">
+              <button className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-2">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                </svg>
+                Load More Photos
+              </button>
+            </div> */}
+          </>
+        )}
       </main>
 
       {/* Lightbox Modal */}
@@ -189,10 +228,18 @@ function Gallery() {
           {/* Image Container */}
           <div className="max-w-6xl max-h-[85vh] overflow-hidden rounded-2xl shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <img
-              src={`/static/gallery/${selectedImage.image_path}`}
-              alt="Gallery"
+              src={selectedImage.url}
+              alt={selectedImage.title || 'Gallery'}
               className="max-w-full max-h-[85vh] object-contain"
             />
+            {selectedImage.title && (
+              <div className="bg-white/10 backdrop-blur-md text-white px-4 py-2 text-center">
+                <p className="font-semibold">{selectedImage.title}</p>
+                {selectedImage.description && (
+                  <p className="text-sm text-gray-200">{selectedImage.description}</p>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Next Button */}
@@ -208,12 +255,14 @@ function Gallery() {
 
           {/* Image Counter */}
           <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-white/10 backdrop-blur-md text-white px-6 py-3 rounded-full font-bold shadow-2xl">
-            {images.findIndex(img => img.id === selectedImage.id) + 1} / {images.length}
+            {images.findIndex(img => img._id === selectedImage._id) + 1} / {images.length}
           </div>
 
           {/* Download Button */}
-          <button
-            onClick={(e) => { e.stopPropagation(); }}
+          <a
+            href={selectedImage.url}
+            download
+            onClick={(e) => e.stopPropagation()}
             className="absolute bottom-6 right-6 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-4 py-2 rounded-full font-bold shadow-2xl transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-2"
             title="Download"
           >
@@ -221,7 +270,7 @@ function Gallery() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
             </svg>
             <span className="hidden sm:inline">Download</span>
-          </button>
+          </a>
         </div>
       )}
 

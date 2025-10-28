@@ -37,7 +37,7 @@ function Services() {
               <div className="text-xs sm:text-sm mt-1">Services</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 hover:bg-white/20 transition">
-              <div className="text-3xl sm:text-4xl font-bold">24/7</div>
+              <div className="text-3xl sm:text-4xl font-bold">100%</div>
               <div className="text-xs sm:text-sm mt-1">Available</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 hover:bg-white/20 transition">
@@ -45,7 +45,7 @@ function Services() {
               <div className="text-xs sm:text-sm mt-1">Home Care</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 hover:bg-white/20 transition">
-              <div className="text-3xl sm:text-4xl font-bold">500+</div>
+              <div className="text-3xl sm:text-4xl font-bold">3000+</div>
               <div className="text-xs sm:text-sm mt-1">Happy Pets</div>
             </div>
           </div>
@@ -196,7 +196,7 @@ function Services() {
                 Need Immediate Care for Your Pet? 🐾
               </h3>
               <p className="text-base sm:text-lg md:text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-                Contact us now for professional veterinary services at your doorstep. We're here 24/7!
+                Contact us now for professional veterinary services at your doorstep. We're here available!
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

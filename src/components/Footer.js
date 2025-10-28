@@ -27,7 +27,7 @@ function Footer() {
                 />
               </div>
               <h2 className="text-2xl font-extrabold bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                MrigaAayuvets
+                MrigAayuvets
               </h2>
             </div>
             <p className="text-sm leading-relaxed text-gray-400">
@@ -89,7 +89,8 @@ function Footer() {
                 { to: '/services', label: ' Our Services' },
                 { to: '/blogs', label: ' Pet Care Tips' },
                 { to: '/gallery', label: ' Gallery' },
-                { to: '/contact', label: ' Contact' }
+                { to: '/contact', label: ' Contact' },
+                { to: '/admin/login', label: ' Admin Login' }
               ].map((link, index) => (
                 <li key={index}>
                   <Link 
@@ -116,7 +117,7 @@ function Footer() {
                 ' Pet Vaccination',
                 ' Surgery & Treatment',
                 ' Pet Nutrition',
-                ' 24/7 Emergency Care',
+                ' Emergency Care',
                 ' Wellness Checkups',
                 ' Pet Grooming'
               ].map((service, index) => (
@@ -162,7 +163,7 @@ function Footer() {
                 <div>
                   <p className="font-semibold text-white">Email</p>
                   <a href="mailto:mrigaayuvets@gmail.com" className="text-gray-400 hover:text-purple-400 transition break-all text-xs sm:text-sm">
-                    mrigaayuvets@gmail.com
+                    mrigaayuvets2025@gmail.com
                   </a>
                 </div>
               </li>
@@ -172,7 +173,7 @@ function Footer() {
                 </div>
                 <div>
                   <p className="font-semibold text-white">Working Hours</p>
-                  <p className="text-gray-400">24/7 Emergency Available</p>
+                  <p className="text-gray-400">Emergency Available</p>
                 </div>
               </li>
             </ul>
@@ -230,7 +231,7 @@ function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
             <p className="text-center md:text-left">
-              &copy; {currentYear} <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-semibold">MrigaAayuvets</span>. All rights reserved.
+              &copy; {currentYear} <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-semibold">MrigAayuvets</span>. All rights reserved.
             </p>
             <p className="text-center md:text-right text-xs sm:text-sm">
               Designed & Developed by <span className="text-blue-400 font-semibold">Tulipspot Marketing & Sales PVT. LTD.</span>

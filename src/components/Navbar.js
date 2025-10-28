@@ -64,7 +64,7 @@ function Navbar() {
               <div className="flex-1 min-w-0">
                 <h1 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-extrabold tracking-tight truncate">
                   <span className="bg-gradient-to-r from-amber-200 via-yellow-100 to-orange-200 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(251,191,36,0.7)] filter brightness-110">
-                    MrigaAayuvets
+                    MrigAayuvets
                   </span>
                 </h1>
                 
@@ -234,7 +234,7 @@ function Navbar() {
             
             <div>
               <p className="text-[10px] sm:text-xs text-orange-100 font-bold">🚨 Pet Emergency?</p>
-              <p className="text-xs sm:text-sm font-extrabold text-white">24/7 Available Now</p>
+              <p className="text-xs sm:text-sm font-extrabold text-white">Available Now</p>
             </div>
           </div>
           

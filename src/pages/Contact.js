@@ -10,7 +10,6 @@ function Contact() {
     subject: '',
     message: ''
   });
-
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
@@ -19,17 +18,17 @@ function Contact() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
+
     if (name === 'phone') {
       const digitsOnly = value.replace(/\D/g, '').slice(0, 10);
       setFormData({ ...formData, [name]: digitsOnly });
-    } 
+    }
     else if (name === 'message') {
       if (value.length <= maxLength) {
         setFormData({ ...formData, [name]: value });
         setCharCount(value.length);
       }
-    } 
+    }
     else {
       setFormData({ ...formData, [name]: value });
     }
@@ -42,29 +41,17 @@ function Contact() {
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Invalid email format';
-    }
-
-    if (formData.phone && !/^[0-9]{10}$/.test(formData.phone)) {
-      newErrors.phone = 'Phone must be 10 digits';
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    }
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.email.trim()) newErrors.email = 'Email is required';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = 'Invalid email format';
+    if (formData.phone && !/^[0-9]{10}$/.test(formData.phone)) newErrors.phone = 'Phone must be 10 digits';
+    if (!formData.message.trim()) newErrors.message = 'Message is required';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const sendToWhatsApp = () => {
+  const sendToWhatsApp = async () => {
     if (!validateForm()) {
       alert('Please fill in all required fields before sending to WhatsApp.');
       return;
@@ -72,24 +59,35 @@ function Contact() {
 
     setLoading(true);
 
-    const whatsappMessage = `📧 *New Contact Message* 📧%0A%0A👤 *Contact Details:*%0AName: ${formData.name}%0AEmail: ${formData.email}%0APhone: ${formData.phone || 'Not provided'}%0A%0A📋 *Subject:* ${formData.subject || 'General Inquiry'}%0A%0A💬 *Message:*%0A${formData.message}%0A%0AThank you for contacting MrigaAayuvets!`;
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-    const phone = '918208657969';
-    window.open(`https://wa.me/${phone}?text=${whatsappMessage}`, '_blank');
+      if (response.ok) {
+        const data = await response.json();
+        window.open(data.whatsappUrl, '_blank');
 
-    setTimeout(() => {
-      setLoading(false);
-      setSuccessMessage('Opening WhatsApp...');
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-      setCharCount(0);
-      setTimeout(() => setSuccessMessage(''), 3000);
-    }, 2000);
+        setSuccessMessage('Opening WhatsApp...');
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+        setCharCount(0);
+        setTimeout(() => setSuccessMessage(''), 3000);
+      } else {
+        alert('Failed to send message. Please try again later.');
+      }
+    } catch {
+      alert('Network error. Please try again later.');
+    }
+
+    setLoading(false);
   };
 
   return (
     <div className="bg-gray-50 min-h-screen">
       <Navbar />
-
+      
       {/* Hero Section - Beautiful Blue/Indigo Gradient */}
 <section className="relative h-48 sm:h-64 md:h-80 flex items-center justify-center bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 text-white overflow-hidden">
   {/* Decorative elements */}
@@ -100,10 +98,10 @@ function Contact() {
   
   <div className="relative z-10 text-center px-4">
     <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold drop-shadow-lg mb-2 sm:mb-3 animate-fade-in">
-      Contact MrigaAayuvets 📞
+      Contact MrigAayuvets 📞
     </h1>
     <p className="text-sm sm:text-base md:text-lg lg:text-xl font-medium text-blue-100">
-      We're here to care for your pets 24/7
+      We're here to care for your pets available anytime you need us!
     </p>
   </div>
 </section>
@@ -191,7 +189,7 @@ function Contact() {
                 <div>
                   <p className="font-bold text-gray-800 text-sm sm:text-base">Email</p>
                   <a href="mailto:mrigaayuvets@gmail.com" className="text-purple-600 hover:text-purple-800 font-semibold text-xs sm:text-sm break-all">
-                    mrigaayuvets@gmail.com
+                    mrigaayuvets2025@gmail.com
                   </a>
                 </div>
               </div>
@@ -205,7 +203,7 @@ function Contact() {
                 </div>
                 <div>
                   <p className="font-bold text-gray-800 text-sm sm:text-base">Working Hours</p>
-                  <p className="text-gray-600 text-xs sm:text-sm">24/7 Emergency Services</p>
+                  <p className="text-gray-600 text-xs sm:text-sm">Emergency Services</p>
                   <p className="text-gray-500 text-xs">Regular: 9:00 AM - 8:00 PM</p>
                 </div>
               </div>
@@ -423,7 +421,6 @@ function Contact() {
           </div>
         </div>
       </main>
-
       <Footer />
     </div>
   );

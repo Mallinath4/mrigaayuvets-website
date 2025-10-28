@@ -14,7 +14,7 @@ export const blogsData = {
     "id": "puppy_care",
     "route": "/blogs/puppy-care",
     "title": "How to take care of your Puppy and feed them?",
-    "image": "/static/images/Maltese Dog 1.png",
+    "image": "/static/images/Maltese.png",
     "excerpt": "The first week of the puppies' lives is the most critical...",
     "author": "Dr. Veterinary Team",
     "date": "March 12, 2024",
@@ -225,12 +225,12 @@ export const servicesData = {
   "emergency_care": {
     "id": "emergency_care",
     "route": "/services/emergency-care",
-    "title": "24/7 Emergency Pet Care",
+    "title": "Emergency Pet Care",
     "image": "/static/images/imgs8.jpg",
-    "description": "Immediate veterinary response for urgent situations. Available 24/7 with experienced emergency veterinarians.",
-    "details": "Pet emergencies can happen at any time. Our 24/7 emergency service ensures immediate veterinary care is available when your pet needs it most.",
+    "description": "Immediate veterinary response for urgent situations. Available with experienced emergency veterinarians.",
+    "details": "Pet emergencies can happen at any time. Our emergency service ensures immediate veterinary care is available when your pet needs it most.",
     "benefits": [
-      "24/7 availability every day",
+      "Availability every day",
       "Rapid response time",
       "Experienced emergency veterinarians",
       "Life-saving interventions",
@@ -254,7 +254,7 @@ export const servicesData = {
       "Evidence-based dietary advice",
       "Supplement guidance"
     ],
-    "pricing": "Consultation ₹500-₹1,000"
+    "pricing": "Consultation ₹1000-₹1,500"
   }
 };
 
@@ -291,7 +291,7 @@ export const contactInfo = {
   hours: {
     weekdays: "9:00 AM - 8:00 PM",
     weekends: "10:00 AM - 6:00 PM",
-    emergency: "24/7 Available"
+    emergency: "Available Now"
   }
 };
 
@@ -305,8 +305,8 @@ export const socialMedia = {
 
 // Statistics
 export const statistics = {
-  happyClients: "500+",
-  servicesProvided: "2000+",
+  happyClients: "1500+",
+  servicesProvided: "3000+",
   yearsExperience: "5+",
   teamMembers: "10+"
 };

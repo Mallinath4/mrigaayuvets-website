@@ -63,35 +63,54 @@ function Appointment() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const sendToWhatsApp = () => {
+  // ✅ Updated to use backend API
+  const sendToWhatsApp = async () => {
     if (!validateForm()) {
-      alert('Please fill in all required fields before sending to WhatsApp.');
+      alert('Please fill in all required fields correctly before submitting.');
       return;
     }
 
     setLoading(true);
 
-    const whatsappMessage = `🐾 *New Appointment Request* 🐾%0A%0A👤 *Patient Details:*%0AName: ${formData.name}%0AEmail: ${formData.email}%0APhone: ${formData.phone}%0A%0A🐕 *Pet Details:*%0APet Name: ${formData.pet_name || 'Not specified'}%0APet Type: ${formData.pet_type || 'Not specified'}%0A%0A⚕️ *Service Required:*%0A${formData.service || 'General consultation'}%0A%0A📅 *Preferred Schedule:*%0ADate: ${formData.preferred_date || 'ASAP'}%0ATime: ${formData.preferred_time || 'Flexible'}%0A%0A📝 *Additional Information:*%0A${formData.message || 'No additional message'}%0A%0AThank you for choosing MrigaAayuvets! 🙏`;
-
-    const phone = '918208657969';
-    window.open(`https://wa.me/${phone}?text=${whatsappMessage}`, '_blank');
-
-    setTimeout(() => {
-      setLoading(false);
-      setSuccessMessage('✅ Opening WhatsApp...');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        pet_name: '',
-        pet_type: '',
-        service: '',
-        preferred_date: '',
-        preferred_time: '',
-        message: ''
+    try {
+      const response = await fetch('/api/appointments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-      setTimeout(() => setSuccessMessage(''), 3000);
-    }, 2000);
+
+      if (response.ok) {
+        const data = await response.json();
+        
+        // Open WhatsApp with the generated URL
+        window.open(data.whatsappUrl, '_blank');
+
+        setSuccessMessage('✅ Appointment booked! Opening WhatsApp...');
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          pet_name: '',
+          pet_type: '',
+          service: '',
+          preferred_date: '',
+          preferred_time: '',
+          message: ''
+        });
+
+        setTimeout(() => setSuccessMessage(''), 3000);
+      } else {
+        const errorData = await response.json();
+        alert(errorData.error || 'Failed to book appointment. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error booking appointment:', error);
+      alert('Network error. Please check your connection and try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -114,7 +133,7 @@ function Appointment() {
             📅 Book Appointment
           </h1>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed text-blue-100">
-            We're here to care for your pets 24/7. Schedule your home visit today! 🐾
+            We're here to care for your pets available. Schedule your home visit today! 🐾
           </p>
 
           {/* Quick Actions */}
@@ -146,7 +165,7 @@ function Appointment() {
       {/* Success Message */}
       {successMessage && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4 sm:pt-6">
-          <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 rounded-lg shadow-lg flex items-center animate-fade-in">
+          <div className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-lg shadow-lg flex items-center animate-fade-in">
             <span className="text-2xl mr-3">✅</span>
             <span className="font-semibold">{successMessage}</span>
           </div>
@@ -189,7 +208,7 @@ function Appointment() {
               <ul className="space-y-3">
                 {[
                   { icon: '🏠', text: 'Stress-free home visits' },
-                  { icon: '⚡', text: '24/7 emergency support' },
+                  { icon: '⚡', text: 'emergency support' },
                   { icon: '🥗', text: 'Personalized nutrition & care' },
                   { icon: '👨‍⚕️', text: 'Experienced veterinarians' },
                   { icon: '💊', text: 'Modern equipment & medicines' }
@@ -415,6 +434,10 @@ function Appointment() {
                     <option value="17:00">🕔 5:00 PM</option>
                     <option value="18:00">🕕 6:00 PM</option>
                     <option value="19:00">🕖 7:00 PM</option>
+                    <option value="19:00">🕖 8:00 PM</option>
+                    <option value="19:00">🕖 9:00 PM</option>
+                    <option value="19:00">🕖 10:00 PM</option>
+                    <option value="19:00">🕖 11:00 PM</option>
                   </select>
                 </div>
               </div>
@@ -449,7 +472,7 @@ function Appointment() {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      Opening WhatsApp...
+                      Booking...
                     </>
                   ) : (
                     <>
