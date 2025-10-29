@@ -10,7 +10,7 @@ function Appointment() {
     pet_name: '',
     pet_type: '',
     service: '',
-    preferred_date: '',
+    preferred_date: new Date().toISOString().split('T')[0],
     preferred_time: '',
     message: ''
   });
