@@ -159,9 +159,9 @@ function Home() {
   // ✨ UPDATED: Better Hero Slider Images (High Quality & Pet-Focused)
 const heroSlides = [
   {
-    // Slide 1: Happy Golden Retriever in nature - beautiful outdoor shot
-    imageDesktop: 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=1920&q=85&fit=crop&crop=center',
-    imageMobile: 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=1080&q=85&fit=crop&crop=center',
+    // Slide 1: Perfectly centered happy dog
+    imageDesktop: 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+    imageMobile: 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=1080&h=1920&fit=crop',
     title: 'Best Veterinary Services At Home in Mumbai',
     titleHighlight: 'Emergency Pet Care',
     description: 'Professional veterinary home services in Mumbai - Expert dog doctors, cat specialists, and emergency care at your doorstep',
@@ -169,9 +169,9 @@ const heroSlides = [
     buttonLink: '/appointment'
   },
   {
-    // Slide 2: Beautiful cat sitting by window - elegant home portrait
-    imageDesktop: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1920&q=85&fit=crop&crop=center',
-    imageMobile: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1080&q=85&fit=crop&crop=center',
+    // Slide 2: Beautiful cat - fully visible
+    imageDesktop: 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+    imageMobile: 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&w=1080&h=1920&fit=crop',
     title: 'Expert Veterinarians',
     titleHighlight: 'Home Visit Services',
     description: 'Certified pet doctors providing professional treatment, vaccinations, surgery & complete animal healthcare at home',
@@ -179,9 +179,9 @@ const heroSlides = [
     buttonLink: '/services'
   },
   {
-    // Slide 3: Happy dog running in grass - energetic and vibrant
-    imageDesktop: 'https://images.unsplash.com/photo-1558788353-f76d92427f16?w=1920&q=85&fit=crop&crop=center',
-    imageMobile: 'https://images.unsplash.com/photo-1558788353-f76d92427f16?w=1080&q=85&fit=crop&crop=center',
+    // Slide 3: Smiling dog - centered and complete
+    imageDesktop: 'https://images.pexels.com/photos/2253275/pexels-photo-2253275.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+    imageMobile: 'https://images.pexels.com/photos/2253275/pexels-photo-2253275.jpeg?auto=compress&cs=tinysrgb&w=1080&h=1920&fit=crop',
     title: 'Emergency Available',
     titleHighlight: 'Pet Hospital',
     description: 'Round-the-clock emergency veterinary care for dogs, cats & all pets - Always available when your pet needs urgent help',
@@ -189,9 +189,9 @@ const heroSlides = [
     buttonLink: '/contact'
   },
   {
-    // Slide 4: Cute orange cat portrait - warm and friendly
-    imageDesktop: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?w=1920&q=85&fit=crop&crop=center',
-    imageMobile: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?w=1080&q=85&fit=crop&crop=center',
+    // Slide 4: Cute cat portrait - full view
+    imageDesktop: 'https://images.pexels.com/photos/1170986/pexels-photo-1170986.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+    imageMobile: 'https://images.pexels.com/photos/1170986/pexels-photo-1170986.jpeg?auto=compress&cs=tinysrgb&w=1080&h=1920&fit=crop',
     title: 'Affordable Pet Care',
     titleHighlight: 'Home Visit Services',
     description: 'Stress-free veterinary care at your home - No clinic visits needed, professional treatment in your pet comfort zone',
@@ -199,6 +199,7 @@ const heroSlides = [
     buttonLink: '/about'
   }
 ];
+
 
 
 
@@ -240,7 +241,7 @@ const heroSlides = [
     <div className="bg-gray-50">
       <Navbar />
       
-      {/* ✨ ENHANCED Hero Slider with Better Images & Animations */}
+      
       {/* ✨ UPDATED Hero Slider - Full Images Without Color Overlay */}
 <section id="hero" className="relative h-screen max-h-[900px] min-h-[600px] overflow-hidden bg-gray-900 group">
   <div className="absolute inset-0">
@@ -251,25 +252,26 @@ const heroSlides = [
           currentSlide === index ? 'opacity-100 z-10 scale-100' : 'opacity-0 z-0 scale-110'
         }`}
       >
-        {/* Desktop Image */}
-        <picture className="hidden md:block absolute inset-0">
-          <img 
-            src={slide.imageDesktop}
-            alt={`${slide.title} - MrigaAayuvets Mumbai`}
-            className="w-full h-full object-cover"
-            loading={index === 0 ? "eager" : "lazy"}
-          />
-        </picture>
+        {/* ✅ FIXED: Desktop Image - Full image visible */}
+<picture className="hidden md:block absolute inset-0">
+  <img 
+    src={slide.imageDesktop}
+    alt={`${slide.title} - MrigaAayuvets Mumbai`}
+    className="w-full h-full object-contain bg-gradient-to-br from-blue-50 to-indigo-50"
+    loading={index === 0 ? "eager" : "lazy"}
+  />
+</picture>
 
-        {/* Mobile Image */}
-        <picture className="block md:hidden absolute inset-0">
-          <img 
-            src={slide.imageMobile}
-            alt={`${slide.title} - Pet Hospital Mumbai`}
-            className="w-full h-full object-cover"
-            loading={index === 0 ? "eager" : "lazy"}
-          />
-        </picture>
+{/* ✅ FIXED: Mobile Image - Full image visible */}
+<picture className="block md:hidden absolute inset-0">
+  <img 
+    src={slide.imageMobile}
+    alt={`${slide.title} - Pet Hospital Mumbai`}
+    className="w-full h-full object-contain bg-gradient-to-br from-blue-50 to-indigo-50"
+    loading={index === 0 ? "eager" : "lazy"}
+  />
+</picture>
+
 
         {/* ✅ UPDATED: Light subtle overlay for text readability (optional - remove if you want pure image) */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40"></div>
