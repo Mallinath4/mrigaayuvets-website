@@ -252,25 +252,26 @@ const heroSlides = [
           currentSlide === index ? 'opacity-100 z-10 scale-100' : 'opacity-0 z-0 scale-110'
         }`}
       >
-        {/* ✅ FIXED: Desktop Image - Full image visible */}
+{/* Desktop Image */}
 <picture className="hidden md:block absolute inset-0">
   <img 
     src={slide.imageDesktop}
     alt={`${slide.title} - MrigaAayuvets Mumbai`}
-    className="w-full h-full object-contain bg-gradient-to-br from-blue-50 to-indigo-50"
+    className="w-full h-full object-scale-down"
     loading={index === 0 ? "eager" : "lazy"}
   />
 </picture>
 
-{/* ✅ FIXED: Mobile Image - Full image visible */}
+{/* Mobile Image */}
 <picture className="block md:hidden absolute inset-0">
   <img 
     src={slide.imageMobile}
     alt={`${slide.title} - Pet Hospital Mumbai`}
-    className="w-full h-full object-contain bg-gradient-to-br from-blue-50 to-indigo-50"
+    className="w-full h-full object-scale-down"
     loading={index === 0 ? "eager" : "lazy"}
   />
 </picture>
+
 
 
         {/* ✅ UPDATED: Light subtle overlay for text readability (optional - remove if you want pure image) */}
