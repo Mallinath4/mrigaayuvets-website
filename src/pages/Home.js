@@ -159,9 +159,9 @@ function Home() {
   // ✨ UPDATED: Better Hero Slider Images (High Quality & Pet-Focused)
 const heroSlides = [
   {
-    // Slide 1: Happy Golden Retriever - vibrant and welcoming
-    imageDesktop: 'https://images.unsplash.com/photo-1634225994058-55d45be61d60?w=1920&q=85&fit=crop&crop=center',
-    imageMobile: 'https://images.unsplash.com/photo-1634225994058-55d45be61d60?w=1080&q=85&fit=crop&crop=center',
+    // Slide 1: Happy Golden Retriever in nature - beautiful outdoor shot
+    imageDesktop: 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=1920&q=85&fit=crop&crop=center',
+    imageMobile: 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=1080&q=85&fit=crop&crop=center',
     title: 'Best Veterinary Services At Home in Mumbai',
     titleHighlight: 'Emergency Pet Care',
     description: 'Professional veterinary home services in Mumbai - Expert dog doctors, cat specialists, and emergency care at your doorstep',
@@ -169,9 +169,9 @@ const heroSlides = [
     buttonLink: '/appointment'
   },
   {
-    // Slide 2: Adorable cat portrait - professional and beautiful
-    imageDesktop: 'https://images.pexels.com/photos/6235241/pexels-photo-6235241.jpeg?auto=compress&cs=tinysrgb&w=1920',
-    imageMobile: 'https://images.pexels.com/photos/6235241/pexels-photo-6235241.jpeg?auto=compress&cs=tinysrgb&w=1080',
+    // Slide 2: Beautiful cat sitting by window - elegant home portrait
+    imageDesktop: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1920&q=85&fit=crop&crop=center',
+    imageMobile: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1080&q=85&fit=crop&crop=center',
     title: 'Expert Veterinarians',
     titleHighlight: 'Home Visit Services',
     description: 'Certified pet doctors providing professional treatment, vaccinations, surgery & complete animal healthcare at home',
@@ -179,9 +179,9 @@ const heroSlides = [
     buttonLink: '/services'
   },
   {
-    // Slide 3: Beautiful dog portrait - bright and cheerful
-    imageDesktop: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1920&q=85&fit=crop',
-    imageMobile: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1080&q=85&fit=crop',
+    // Slide 3: Happy dog running in grass - energetic and vibrant
+    imageDesktop: 'https://images.unsplash.com/photo-1558788353-f76d92427f16?w=1920&q=85&fit=crop&crop=center',
+    imageMobile: 'https://images.unsplash.com/photo-1558788353-f76d92427f16?w=1080&q=85&fit=crop&crop=center',
     title: 'Emergency Available',
     titleHighlight: 'Pet Hospital',
     description: 'Round-the-clock emergency veterinary care for dogs, cats & all pets - Always available when your pet needs urgent help',
@@ -189,9 +189,9 @@ const heroSlides = [
     buttonLink: '/contact'
   },
   {
-    // Slide 4: Dog and cat together - showing both services
-    imageDesktop: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=1920&q=85&fit=crop',
-    imageMobile: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=1080&q=85&fit=crop',
+    // Slide 4: Cute orange cat portrait - warm and friendly
+    imageDesktop: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?w=1920&q=85&fit=crop&crop=center',
+    imageMobile: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?w=1080&q=85&fit=crop&crop=center',
     title: 'Affordable Pet Care',
     titleHighlight: 'Home Visit Services',
     description: 'Stress-free veterinary care at your home - No clinic visits needed, professional treatment in your pet comfort zone',
