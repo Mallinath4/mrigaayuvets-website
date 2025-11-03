@@ -180,8 +180,8 @@ function Home() {
     buttonLink: '/contact'
   },
   {
-    imageDesktop: '/static/images/slider4.jpg',
-    imageMobile: '/static/images/slider4.jpg',
+    imageDesktop: '/static/images/djsl3.jpg',
+    imageMobile: '/static/images/djsl3.jpg',
     title: 'Affordable Pet Care',
     subtitle: 'Stress-Free Service',
     titleHighlight: 'Home Visit Services',
