@@ -149,47 +149,48 @@ function Home() {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const heroSlides = [
-    {
-      imageDesktop: '/images/djsl.jpg',
-      imageMobile: '/images/djsl.jpg',
-      title: 'Best Veterinary Services',
-      subtitle: 'At Home in Mumbai',
-      titleHighlight: 'Emergency Pet Care',
-      description: 'Expert dog doctors, cat specialists, and emergency care at your doorstep',
-      buttonText: 'Book Appointment',
-      buttonLink: '/appointment'
-    },
-    {
-      imageDesktop: '/images/djsl1.jpg',
-      imageMobile: '/images/djsl1.jpg',
-      title: 'Expert Veterinarians',
-      subtitle: 'Professional Care',
-      titleHighlight: 'Home Visit Services',
-      description: 'Certified pet doctors providing treatment, vaccinations & surgery',
-      buttonText: 'Our Services',
-      buttonLink: '/services'
-    },
-    {
-      imageDesktop: '/images/djsl2.jpg',
-      imageMobile: '/images/djsl2.jpg',
-      title: 'Emergency Available',
-      subtitle: 'Always Ready',
-      titleHighlight: 'Pet Hospital',
-      description: 'Round-the-clock emergency care for dogs, cats & all pets',
-      buttonText: 'Emergency Contact',
-      buttonLink: '/contact'
-    },
-    {
-      imageDesktop: '/images/slider4.jpg',
-      imageMobile: '/images/slider4.jpg',
-      title: 'Affordable Pet Care',
-      subtitle: 'Stress-Free Service',
-      titleHighlight: 'Home Visit Services',
-      description: 'Professional treatment in your pet\'s comfort zone',
-      buttonText: 'Learn More',
-      buttonLink: '/about'
-    }
-  ];
+  {
+    imageDesktop: '/static/images/djsl.jpg',
+    imageMobile: '/static/images/djsl.jpg',
+    title: 'Best Veterinary Services',
+    subtitle: 'At Home in Mumbai',
+    titleHighlight: 'Emergency Pet Care',
+    description: 'Expert dog doctors, cat specialists, and emergency care at your doorstep',
+    buttonText: 'Book Appointment',
+    buttonLink: '/appointment'
+  },
+  {
+    imageDesktop: '/static/images/djsl1.jpg',
+    imageMobile: '/static/images/djsl1.jpg',
+    title: 'Expert Veterinarians',
+    subtitle: 'Professional Care',
+    titleHighlight: 'Home Visit Services',
+    description: 'Certified pet doctors providing treatment, vaccinations & surgery',
+    buttonText: 'Our Services',
+    buttonLink: '/services'
+  },
+  {
+    imageDesktop: '/static/images/djsl2.jpg',
+    imageMobile: '/static/images/djsl2.jpg',
+    title: 'Emergency Available',
+    subtitle: 'Always Ready',
+    titleHighlight: 'Pet Hospital',
+    description: 'Round-the-clock emergency care for dogs, cats & all pets',
+    buttonText: 'Emergency Contact',
+    buttonLink: '/contact'
+  },
+  {
+    imageDesktop: '/static/images/slider4.jpg',
+    imageMobile: '/static/images/slider4.jpg',
+    title: 'Affordable Pet Care',
+    subtitle: 'Stress-Free Service',
+    titleHighlight: 'Home Visit Services',
+    description: 'Professional treatment in your pet\'s comfort zone',
+    buttonText: 'Learn More',
+    buttonLink: '/about'
+  }
+];
+
 
   const services = Object.values(servicesData).slice(0, 6);
 
