@@ -24,7 +24,9 @@ const images = [
   { image_path: 'gall17.jpeg', uploaded_at: '2024-01-17', alt: '#' },
   { image_path: 'gall18.jpeg', uploaded_at: '2024-01-18', alt: '#' },
   { image_path: 'gall19.jpeg', uploaded_at: '2024-01-19', alt: '#' },
-  { image_path: 'gall20.jpeg', uploaded_at: '2024-01-20', alt: '#' }
+  { image_path: 'gall20.jpeg', uploaded_at: '2024-01-20', alt: '#' },
+  { image_path: 'gg1.jpg', uploaded_at: '2024-01-20', alt: 'mrigaayuvets' },
+  { image_path: 'gg.jpg', uploaded_at: '2024-01-20', alt: 'Home visit' }
 ];
 
 // Prefix local paths for frontend if images are inside /public/gallery
