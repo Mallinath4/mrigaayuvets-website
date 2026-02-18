@@ -634,7 +634,7 @@ function Home() {
               <div className="bg-white w-20 h-20 sm:w-24 sm:h-24 mx-auto rounded-full flex items-center justify-center shadow-lg mb-3 group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
                 <span className="text-4xl sm:text-5xl">✅</span>
               </div>
-              <p className="font-semibold text-gray-700 text-sm sm:text-base">Veterinary Council<br/>Registered</p>
+              <p className="font-semibold text-gray-700 text-sm sm:text-base">Veterinary Care</p>
             </div>
 
             <div className="text-center group">
