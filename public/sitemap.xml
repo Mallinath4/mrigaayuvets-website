@@ -3,7 +3,7 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://mrigaayuvets.in</loc>
+    <loc>https://www.mrigaayuvets.in</loc>
     <lastmod>2025-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -11,7 +11,7 @@
 
   <!-- Example About Page -->
   <url>
-    <loc>https://mrigaayuvets.in/about</loc>
+    <loc>https://www.mrigaayuvets.in/about</loc>
     <lastmod>2025-10-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -19,7 +19,7 @@
 
   <!-- Example Services Page -->
   <url>
-    <loc>https://mrigaayuvets.in/services</loc>
+    <loc>https://www.mrigaayuvets.in/services</loc>
     <lastmod>2025-10-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -27,7 +27,7 @@
 
   <!-- Example Contact Page -->
   <url>
-    <loc>https://mrigaayuvets.in/contact</loc>
+    <loc>https://www.mrigaayuvets.in/contact</loc>
     <lastmod>2025-10-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

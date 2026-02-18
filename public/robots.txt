@@ -1,11 +1,11 @@
-# robots.txt for https://mrigaayuvets.in
+# robots.txt for https://www.mrigaayuvets.in
 # This file tells search engines what they can and cannot crawl.
 
 User-agent: *
 Allow: /
 
 # Sitemap helps search engines find all your pages.
-Sitemap: https://mrigaayuvets.in/sitemap.xml
+Sitemap: https://www.mrigaayuvets.in/sitemap.xml
 
 # Optional: Add crawl-delay if your server is slow (Vercel is fast, so not needed)
 # Crawl-delay: 10
