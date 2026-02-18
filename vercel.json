@@ -19,17 +19,15 @@
       "dest": "/api/index.js"
     },
     {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/$1"
+      "dest": "/index.html"
     }
-  ],
-  "env": {
-    "MONGODB_URI": "@mongodb-uri",
-    "JWT_SECRET": "@jwt-secret",
-    "ADMIN_EMAIL": "@admin-email",
-    "ADMIN_PASSWORD": "@admin-password",
-    "CLOUDINARY_CLOUD_NAME": "@cloudinary-cloud-name",
-    "CLOUDINARY_API_KEY": "@cloudinary-api-key",
-    "CLOUDINARY_API_SECRET": "@cloudinary-api-secret"
-  }
+  ]
 }
