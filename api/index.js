@@ -1,46 +1,48 @@
-require('dotenv').config();
-const express  = require('express');
-const mongoose = require('mongoose');
-const cors     = require('cors');
-const path     = require('path');
+require('dotenv').config({ path: require('path').join(__dirname, '.env') });
+
+const express    = require('express');
+const cors       = require('cors');
+const mongoose   = require('mongoose');
+const path       = require('path');
 
 const app = express();
 
+// ── Check required env vars ───────────────────────────────────────────────────
+const requiredVars = ['MONGO_URI', 'JWT_SECRET'];
+requiredVars.forEach(v => {
+  if (!process.env[v]) {
+    console.error(`❌ Missing env variable: ${v}`);
+    process.exit(1);
+  }
+});
+
 // ── Middleware ────────────────────────────────────────────────────────────────
-app.use(cors({
-  origin: process.env.FRONTEND_URL || '*',
-  credentials: true
-}));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ── Static files (local dev only) ─────────────────────────────────────────────
-app.use('/static', express.static(path.join(__dirname, 'public', 'static')));
-
-// ── MongoDB Connection ─────────────────────────────────────────────────────────
-// ✅ No deprecated options
+// ── MongoDB ───────────────────────────────────────────────────────────────────
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ Connected to MongoDB'))
-  .catch((err) => console.error('❌ MongoDB connection error:', err.message));
+  .catch((err) => console.error('❌ MongoDB Error:', err.message));
 
 // ── Routes ────────────────────────────────────────────────────────────────────
 app.use('/api/admin',        require('./routes/admin'));
 app.use('/api/doctors',      require('./routes/doctors'));
 app.use('/api/gallery',      require('./routes/gallery'));
 app.use('/api/appointments', require('./routes/appointments'));
-app.use('/api/contacts',     require('./routes/contact'));
+app.use('/api/contact',      require('./routes/contact'));
 
 // ── Health check ──────────────────────────────────────────────────────────────
 app.get('/api/health', (req, res) => {
   res.json({
-    status:    'OK',
-    message:   '🐾 MrigAayuvets API is running',
-    timestamp: new Date().toISOString(),
-    mongodb:   mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'
+    status:  'OK',
+    message: '🐾 MrigAayuvets API running',
+    mongo:   mongoose.connection.readyState === 1 ? '✅ connected' : '❌ disconnected'
   });
 });
 
-// ── 404 handler ───────────────────────────────────────────────────────────────
+// ── 404 ───────────────────────────────────────────────────────────────────────
 app.use((req, res) => {
   res.status(404).json({ error: `Route ${req.path} not found` });
 });
@@ -48,26 +50,14 @@ app.use((req, res) => {
 // ── Global error handler ──────────────────────────────────────────────────────
 app.use((err, req, res, next) => {
   console.error('Server error:', err.message);
-  res.status(err.status || 500).json({ error: err.message || 'Internal server error' });
+  res.status(500).json({ error: err.message || 'Internal server error' });
 });
 
-// ── Catch unhandled rejections (shows real error in Vercel logs) ──────────────
-process.on('unhandledRejection', (reason) => {
-  console.error('❌ Unhandled Rejection:', JSON.stringify(reason));
-  console.error('❌ Message:', reason?.message || String(reason));
-});
-
-process.on('uncaughtException', (err) => {
-  console.error('❌ Uncaught Exception:', err.message);
-});
-
-// ── Export for Vercel ─────────────────────────────────────────────────────────
+// ── For Vercel serverless ─────────────────────────────────────────────────────
 module.exports = app;
 
-// ── Local dev ─────────────────────────────────────────────────────────────────
+// ── Local dev only ────────────────────────────────────────────────────────────
 if (process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
-  });
+  app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
 }
