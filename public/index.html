@@ -2,34 +2,60 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    
-    <!-- FAVICON - Multiple Sizes -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- ===================== FAVICON - Multiple Sizes ===================== -->
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <link rel="icon" type="image/png" sizes="96x96" href="%PUBLIC_URL%/favicon-96x96.png" />
-    
-    <!-- Apple Touch Icon -->
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
-    
-    <!-- Android/Chrome Icons -->
     <link rel="icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/logo192.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="%PUBLIC_URL%/logo512.png" />
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- ===================== PWA CORE ===================== -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <meta name="theme-color" content="#14b8a6" />
-    
-    <!-- PRIMARY SEO Meta Tags -->
+
+    <!-- iOS Safari PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="MrigAayuVets" />
+
+    <!-- Android Chrome PWA -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="MrigAayuVets" />
+
+    <!-- Windows Tiles -->
+    <meta name="msapplication-TileColor" content="#14b8a6" />
+    <meta name="msapplication-TileImage" content="%PUBLIC_URL%/logo192.png" />
+    <meta name="msapplication-config" content="%PUBLIC_URL%/browserconfig.xml" />
+
+    <!-- iOS Splash Screens -->
+    <link rel="apple-touch-startup-image"
+      href="%PUBLIC_URL%/static/images/splash-1125x2436.png"
+      media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" />
+    <link rel="apple-touch-startup-image"
+      href="%PUBLIC_URL%/static/images/splash-1170x2532.png"
+      media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)" />
+    <link rel="apple-touch-startup-image"
+      href="%PUBLIC_URL%/static/images/splash-1284x2778.png"
+      media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3)" />
+    <link rel="apple-touch-startup-image"
+      href="%PUBLIC_URL%/static/images/splash-750x1334.png"
+      media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" />
+
+    <!-- ===================== PRIMARY SEO Meta Tags ===================== -->
     <meta name="description" content="MrigAayuvets - Professional Veterinary Home Services in Mumbai. Emergency pet care, home visits, vaccinations, surgery, and complete pet healthcare at your doorstep." />
     <meta name="keywords" content="veterinary clinic Mumbai, pet hospital Mumbai, animal doctor near me, veterinarian Mumbai, dog doctor Mumbai, cat hospital Mumbai, emergency vet Mumbai, pet care home service Mumbai, pet vaccination Mumbai, dog surgery Mumbai, pet hospital Mumbai, affordable vet Mumbai" />
     <meta name="author" content="MrigAayuvets" />
     <meta name="robots" content="index, follow" />
-    
-    <!-- LOCATION META TAGS -->
+
+    <!-- ===================== LOCATION META TAGS ===================== -->
     <meta name="geo.region" content="IN-MH" />
     <meta name="geo.placename" content="Mumbai, Maharashtra" />
     <meta name="geo.position" content="19.0760;72.8777" />
     <meta name="ICBM" content="19.0760, 72.8777" />
-    
-    <!-- Open Graph Meta Tags (Facebook, LinkedIn) -->
+
+    <!-- ===================== Open Graph (Facebook, LinkedIn) ===================== -->
     <meta property="og:title" content="MrigAayuvets - Best Veterinary Clinic in Mumbai | Pet Care" />
     <meta property="og:description" content="Professional veterinary home services in Mumbai with emergency care, home visits, vaccinations, and expert treatment. Trusted by 500+ pet parents." />
     <meta property="og:type" content="website" />
@@ -38,26 +64,26 @@
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="512" />
     <meta property="og:image:alt" content="MrigAayuvets Logo - Veterinary Clinic Mumbai" />
-    <meta property="og:site_name" content="MrigaAayuvets" />
+    <meta property="og:site_name" content="MrigAayuvets" />
     <meta property="og:locale" content="en_IN" />
-    
-    <!-- Twitter Card Meta Tags -->
+
+    <!-- ===================== Twitter Card ===================== -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="MrigAayuvets - Best Veterinary Clinic in Mumbai" />
-    <meta name="twitter:description" content="emergency pet care, home visits, and professional veterinary services in Mumbai. Call: +91-8208657969" />
+    <meta name="twitter:description" content="Emergency pet care, home visits, and professional veterinary services in Mumbai. Call: +91-8208657969" />
     <meta name="twitter:image" content="https://www.mrigaayuvets.in/logo512.png" />
     <meta name="twitter:image:alt" content="MrigAayuvets Logo" />
     <meta name="twitter:site" content="@mrigaayuvets" />
-    
-    <!-- CANONICAL URL -->
+
+    <!-- ===================== CANONICAL URL ===================== -->
     <link rel="canonical" href="https://www.mrigaayuvets.in/" />
-    
-    <!-- STRUCTURED DATA - LOCAL BUSINESS SCHEMA -->
+
+    <!-- ===================== STRUCTURED DATA - LOCAL BUSINESS ===================== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "VeterinaryCare",
-      "name": "MrigaAayuvets",
+      "name": "MrigAayuvets",
       "alternateName": "Mriga Aayuvets Pet Hospital",
       "image": "https://www.mrigaayuvets.in/logo512.png",
       "logo": "https://www.mrigaayuvets.in/logo512.png",
@@ -81,9 +107,9 @@
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-          "opens": "07:00 AM",
-          "closes": "10:59 PM"
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+          "opens": "07:00",
+          "closes": "22:59"
         }
       ],
       "sameAs": [
@@ -98,7 +124,7 @@
         "ratingValue": "5",
         "reviewCount": "50"
       },
-      "description": "MrigAayuvets is a leading veterinary clinic in Mumbai offering emergency pet care, home visit services, vaccinations, surgery, and comprehensive animal healthcare. Our experienced veterinarians provide professional treatment for dogs, cats, and exotic pets.",
+      "description": "MrigAayuvets is a leading veterinary clinic in Mumbai offering emergency pet care, home visit services, vaccinations, surgery, and comprehensive animal healthcare.",
       "areaServed": {
         "@type": "City",
         "name": "Mumbai"
@@ -109,38 +135,26 @@
         "itemListElement": [
           {
             "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Emergency Pet Care"
-            }
+            "itemOffered": { "@type": "Service", "name": "Emergency Pet Care" }
           },
           {
             "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Home Visit Veterinary Services"
-            }
+            "itemOffered": { "@type": "Service", "name": "Home Visit Veterinary Services" }
           },
           {
             "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Pet Vaccination"
-            }
+            "itemOffered": { "@type": "Service", "name": "Pet Vaccination" }
           },
           {
             "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Pet Surgery"
-            }
+            "itemOffered": { "@type": "Service", "name": "Pet Surgery" }
           }
         ]
       }
     }
     </script>
 
-    <!-- BREADCRUMB SCHEMA -->
+    <!-- ===================== BREADCRUMB SCHEMA ===================== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -168,12 +182,12 @@
     }
     </script>
 
-    <!-- ORGANIZATION SCHEMA -->
+    <!-- ===================== ORGANIZATION SCHEMA ===================== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "MrigaAayuvets",
+      "name": "MrigAayuvets",
       "url": "https://www.mrigaayuvets.in",
       "logo": "https://www.mrigaayuvets.in/logo512.png",
       "contactPoint": {
@@ -191,7 +205,7 @@
     }
     </script>
 
-    <!-- WEBSITE SCHEMA -->
+    <!-- ===================== WEBSITE SCHEMA ===================== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -205,30 +219,42 @@
       }
     }
     </script>
-    
-    <!-- Font Awesome -->
-    <link 
-      rel="stylesheet" 
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
-      integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" 
-      crossorigin="anonymous" 
-      referrerpolicy="no-referrer" 
-    />
-    
-    <!-- Google Fonts - Poppins -->
+
+    <!-- ===================== PERFORMANCE: Preload Critical Assets ===================== -->
+    <link rel="preload" href="%PUBLIC_URL%/logo512.png" as="image" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+
+    <!-- ===================== GOOGLE FONTS ===================== -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    
-    <!-- Manifest -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    
-    <!-- Page Title -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ===================== FONT AWESOME (Non-blocking) ===================== -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      />
+    </noscript>
+
+    <!-- ===================== PAGE TITLE ===================== -->
     <title>MrigAayuvets - Best Veterinary Clinic in Mumbai | Pet Care & Home Visits</title>
-    
-    <!-- Inline CSS for Veterinary Loader -->
+
+    <!-- ===================== INLINE CSS - Veterinary Loader ===================== -->
     <style>
-      /* Loading Screen - Veterinary Theme */
       #loading-screen {
         position: fixed;
         top: 0;
@@ -244,24 +270,21 @@
         transition: opacity 0.5s ease-out;
         overflow: hidden;
       }
-      
+
       #loading-screen.hidden {
         opacity: 0;
         pointer-events: none;
       }
 
-      /* Animated Background Elements */
       .bg-pattern {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
         opacity: 0.1;
-        background-image: 
-          radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        background-image:
+          radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+          radial-gradient(circle at 40% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
         animation: bgMove 20s ease-in-out infinite;
       }
 
@@ -270,19 +293,15 @@
         50% { transform: translate(50px, 50px); }
       }
 
-      /* Logo Container */
       .loader-logo {
         position: relative;
-        width: 120px;
-        height: 120px;
+        width: 120px; height: 120px;
         margin-bottom: 30px;
       }
 
-      /* Rotating Ring */
       .loader-ring {
         position: absolute;
-        width: 100%;
-        height: 100%;
+        width: 100%; height: 100%;
         border: 4px solid transparent;
         border-top: 4px solid #5eead4;
         border-right: 4px solid #2dd4bf;
@@ -291,10 +310,8 @@
       }
 
       .loader-ring:nth-child(2) {
-        width: 90%;
-        height: 90%;
-        top: 5%;
-        left: 5%;
+        width: 90%; height: 90%;
+        top: 5%; left: 5%;
         border-top: 4px solid #14b8a6;
         border-right: 4px solid #0d9488;
         animation: rotate 1.5s linear infinite reverse;
@@ -305,24 +322,20 @@
         100% { transform: rotate(360deg); }
       }
 
-      /* Logo Image */
       .loader-image {
         position: absolute;
-        top: 50%;
-        left: 50%;
+        top: 50%; left: 50%;
         transform: translate(-50%, -50%);
-        width: 70px;
-        height: 70px;
+        width: 70px; height: 70px;
         border-radius: 50%;
         background: white;
         padding: 5px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         animation: pulse 2s ease-in-out infinite;
       }
 
       .loader-image img {
-        width: 100%;
-        height: 100%;
+        width: 100%; height: 100%;
         border-radius: 50%;
         object-fit: cover;
       }
@@ -332,13 +345,11 @@
         50% { transform: translate(-50%, -50%) scale(1.1); }
       }
 
-      /* Paw Prints Animation */
       .paw-prints {
         position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
+        width: 100%; height: 100%;
+        top: 0; left: 0;
+        pointer-events: none;
       }
 
       .paw {
@@ -348,29 +359,10 @@
         animation: pawWalk 3s ease-in-out infinite;
       }
 
-      .paw:nth-child(1) {
-        top: 20%;
-        left: 10%;
-        animation-delay: 0s;
-      }
-
-      .paw:nth-child(2) {
-        top: 30%;
-        right: 15%;
-        animation-delay: 0.5s;
-      }
-
-      .paw:nth-child(3) {
-        bottom: 25%;
-        left: 20%;
-        animation-delay: 1s;
-      }
-
-      .paw:nth-child(4) {
-        bottom: 35%;
-        right: 10%;
-        animation-delay: 1.5s;
-      }
+      .paw:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+      .paw:nth-child(2) { top: 30%; right: 15%; animation-delay: 0.5s; }
+      .paw:nth-child(3) { bottom: 25%; left: 20%; animation-delay: 1s; }
+      .paw:nth-child(4) { bottom: 35%; right: 10%; animation-delay: 1.5s; }
 
       @keyframes pawWalk {
         0% { opacity: 0; transform: translateY(20px) scale(0.8); }
@@ -378,11 +370,9 @@
         100% { opacity: 0; transform: translateY(-20px) scale(0.8); }
       }
 
-      /* Medical Cross */
       .medical-cross {
         position: relative;
-        width: 40px;
-        height: 40px;
+        width: 40px; height: 40px;
         margin: 20px auto;
       }
 
@@ -395,15 +385,13 @@
       }
 
       .medical-cross::before {
-        width: 8px;
-        height: 40px;
+        width: 8px; height: 40px;
         left: 16px;
         animation: crossPulse 1.5s ease-in-out infinite;
       }
 
       .medical-cross::after {
-        width: 40px;
-        height: 8px;
+        width: 40px; height: 8px;
         top: 16px;
         animation: crossPulse 1.5s ease-in-out infinite 0.75s;
       }
@@ -413,18 +401,13 @@
         50% { opacity: 0.5; transform: scale(0.9); }
       }
 
-      /* Heartbeat Line */
       .heartbeat {
-        width: 200px;
-        height: 60px;
+        width: 200px; height: 60px;
         position: relative;
         margin: 20px auto;
       }
 
-      .heartbeat svg {
-        width: 100%;
-        height: 100%;
-      }
+      .heartbeat svg { width: 100%; height: 100%; }
 
       .heartbeat-line {
         stroke: white;
@@ -440,7 +423,6 @@
         100% { stroke-dashoffset: 0; }
       }
 
-      /* Loading Text */
       .loading-text {
         color: white;
         font-family: 'Poppins', sans-serif;
@@ -448,11 +430,11 @@
         font-weight: 700;
         margin-top: 20px;
         text-align: center;
-        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        text-shadow: 0 2px 10px rgba(0,0,0,0.3);
       }
 
       .loading-subtitle {
-        color: rgba(255, 255, 255, 0.9);
+        color: rgba(255,255,255,0.9);
         font-family: 'Poppins', sans-serif;
         font-size: 1rem;
         font-weight: 400;
@@ -466,7 +448,6 @@
         50% { opacity: 1; }
       }
 
-      /* Loading Dots */
       .loading-dots {
         display: inline-flex;
         gap: 8px;
@@ -474,8 +455,7 @@
       }
 
       .dot {
-        width: 8px;
-        height: 8px;
+        width: 8px; height: 8px;
         background: white;
         border-radius: 50%;
         animation: dotBounce 1.4s ease-in-out infinite;
@@ -489,7 +469,6 @@
         40% { transform: translateY(-10px); }
       }
 
-      /* Prevent Flash of Unstyled Content */
       body {
         margin: 0;
         font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
@@ -497,53 +476,32 @@
         -moz-osx-font-smoothing: grayscale;
         overflow-x: hidden;
       }
-      
-      body.loading {
-        overflow: hidden;
-      }
 
-      /* Responsive */
+      body.loading { overflow: hidden; }
+
       @media (max-width: 640px) {
-        .loader-logo {
-          width: 100px;
-          height: 100px;
-        }
-
-        .loader-image {
-          width: 60px;
-          height: 60px;
-        }
-
-        .loading-text {
-          font-size: 1.25rem;
-        }
-
-        .loading-subtitle {
-          font-size: 0.875rem;
-        }
-
-        .paw {
-          font-size: 24px;
-        }
+        .loader-logo { width: 100px; height: 100px; }
+        .loader-image { width: 60px; height: 60px; }
+        .loading-text { font-size: 1.25rem; }
+        .loading-subtitle { font-size: 0.875rem; }
+        .paw { font-size: 24px; }
       }
     </style>
   </head>
-  
+
   <body class="loading">
     <noscript>
-      <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+      <div style="text-align:center; padding:50px; font-family:Arial,sans-serif;">
         <h1>⚠️ JavaScript Required</h1>
         <p>You need to enable JavaScript to run this application.</p>
         <p>Please enable JavaScript in your browser settings and refresh the page.</p>
       </div>
     </noscript>
-    
-    <!-- Veterinary Loading Screen -->
+
+    <!-- ===================== VETERINARY LOADING SCREEN ===================== -->
     <div id="loading-screen">
-      <!-- Background Pattern -->
       <div class="bg-pattern"></div>
 
-      <!-- Animated Paw Prints -->
       <div class="paw-prints">
         <div class="paw">🐾</div>
         <div class="paw">🐾</div>
@@ -551,29 +509,25 @@
         <div class="paw">🐾</div>
       </div>
 
-      <!-- Logo with Rotating Rings -->
       <div class="loader-logo">
         <div class="loader-ring"></div>
         <div class="loader-ring"></div>
         <div class="loader-image">
-          <img src="%PUBLIC_URL%/logo512.png" alt="MrigaAayuvets Logo" />
+          <img src="%PUBLIC_URL%/logo512.png" alt="MrigAayuvets Logo" />
         </div>
       </div>
 
-      <!-- Medical Cross -->
       <div class="medical-cross"></div>
 
-      <!-- Heartbeat Line -->
       <div class="heartbeat">
         <svg viewBox="0 0 200 60">
-          <polyline 
-            class="heartbeat-line" 
+          <polyline
+            class="heartbeat-line"
             points="0,30 20,30 25,20 30,40 35,30 40,30 45,25 50,35 55,30 200,30"
           />
         </svg>
       </div>
 
-      <!-- Loading Text -->
       <p class="loading-text">
         MrigAayuvets
         <span class="loading-dots">
@@ -584,22 +538,20 @@
       </p>
       <p class="loading-subtitle">🐾 Professional Veterinary Care in Mumbai 🏥</p>
     </div>
-    
-    <!-- React Root -->
+
+    <!-- ===================== REACT ROOT ===================== -->
     <div id="root"></div>
-    
-    <!-- Loading Screen Script -->
+
+    <!-- ===================== LOADING SCREEN SCRIPT ===================== -->
     <script>
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          const loadingScreen = document.getElementById('loading-screen');
-          const body = document.body;
-          
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          var loadingScreen = document.getElementById('loading-screen');
+          var body = document.body;
           if (loadingScreen) {
             loadingScreen.classList.add('hidden');
             body.classList.remove('loading');
-            
-            setTimeout(function() {
+            setTimeout(function () {
               if (loadingScreen.parentNode) {
                 loadingScreen.parentNode.removeChild(loadingScreen);
               }
@@ -607,11 +559,11 @@
           }
         }, 1500);
       });
-      
-      setTimeout(function() {
-        const loadingScreen = document.getElementById('loading-screen');
-        const body = document.body;
-        
+
+      // Failsafe: force hide after 4 seconds
+      setTimeout(function () {
+        var loadingScreen = document.getElementById('loading-screen');
+        var body = document.body;
         if (loadingScreen && !loadingScreen.classList.contains('hidden')) {
           loadingScreen.classList.add('hidden');
           body.classList.remove('loading');
