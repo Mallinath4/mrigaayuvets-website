@@ -145,33 +145,68 @@ router.delete('/gallery/:id', authMiddleware, async (req, res) => {
 // DOCTOR ROUTES
 // ─────────────────────────────────────────────────────────────────────────────
 
+// POST /api/admin/doctors — with Cloudinary image upload
+router.post('/doctors', authMiddleware, upload.single('image'), async (req, res) => {
+  try {
+    const { name, qualification, specialization, experience, phone, email, bio } = req.body;
+
+    if (!name) return res.status(400).json({ error: 'Name is required' });
+
+    let imageUrl     = '';
+    let cloudinaryId = '';
+
+    // Upload image to Cloudinary if file provided
+    if (req.file) {
+      const result = await uploadToCloudinary(
+        req.file.buffer,
+        'mrigaayuvets/doctors'  // separate folder for doctors
+      );
+      imageUrl     = result.secure_url;
+      cloudinaryId = result.public_id;
+    }
+
+    const doctor = new Doctor({
+      name, qualification, specialization,
+      experience:   parseInt(experience),
+      phone, email, bio,
+      image:        imageUrl,
+      cloudinaryId: cloudinaryId,
+      status:       'active'
+    });
+
+    await doctor.save();
+    res.status(201).json({ message: 'Doctor added successfully', doctor });
+
+  } catch (error) {
+    console.error('Doctor upload error:', error.message);
+    res.status(500).json({ error: 'Failed to add doctor: ' + error.message });
+  }
+});
+
+// GET /api/admin/doctors — LIST ALL DOCTORS
 router.get('/doctors', authMiddleware, async (req, res) => {
   try {
     const doctors = await Doctor.find().sort({ createdAt: -1 });
+    console.log('Found doctors:', doctors.length); // debug log
     res.json({ doctors });
   } catch (error) {
+    console.error('GET doctors error:', error);
     res.status(500).json({ error: 'Server error' });
   }
 });
 
-router.post('/doctors', authMiddleware, async (req, res) => {
-  try {
-    const { name, qualification, specialization, experience, phone, email, bio, image } = req.body;
-    const doctor = new Doctor({
-      name, qualification, specialization,
-      experience: parseInt(experience),
-      phone, email, bio, image,
-      status: 'active'
-    });
-    await doctor.save();
-    res.status(201).json({ message: 'Doctor added successfully', doctor });
-  } catch (error) {
-    res.status(500).json({ error: 'Server error' });
-  }
-});
 
+// DELETE /api/admin/doctors/:id — also deletes image from Cloudinary
 router.delete('/doctors/:id', authMiddleware, async (req, res) => {
   try {
+    const doctor = await Doctor.findById(req.params.id);
+    if (!doctor) return res.status(404).json({ error: 'Doctor not found' });
+
+    // Delete image from Cloudinary
+    if (doctor.cloudinaryId) {
+      await cloudinary.uploader.destroy(doctor.cloudinaryId);
+    }
+
     await Doctor.findByIdAndDelete(req.params.id);
     res.json({ message: 'Doctor deleted successfully' });
   } catch (error) {
@@ -179,18 +214,6 @@ router.delete('/doctors/:id', authMiddleware, async (req, res) => {
   }
 });
 
-router.patch('/doctors/:id/toggle-status', authMiddleware, async (req, res) => {
-  try {
-    const doctor = await Doctor.findById(req.params.id);
-    if (!doctor) return res.status(404).json({ message: 'Doctor not found' });
-
-    doctor.status = doctor.status === 'active' ? 'inactive' : 'active';
-    await doctor.save();
-    res.json({ status: doctor.status });
-  } catch (error) {
-    res.status(500).json({ error: 'Server error' });
-  }
-});
 
 // ─────────────────────────────────────────────────────────────────────────────
 // APPOINTMENTS & CONTACTS
