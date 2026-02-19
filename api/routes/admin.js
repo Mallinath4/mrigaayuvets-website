@@ -1,3 +1,26 @@
+// Add at very top of admin.js temporarily
+try {
+  require('../config/cloudinary');
+  console.log('✅ Cloudinary config loaded');
+} catch(e) {
+  console.error('❌ Cloudinary config error:', e.message);
+}
+
+try {
+  require('multer-storage-cloudinary');
+  console.log('✅ multer-storage-cloudinary loaded');
+} catch(e) {
+  console.error('❌ multer-storage-cloudinary error:', e.message);
+}
+
+
+
+
+
+
+
+
+
 const express    = require('express');
 const router     = express.Router();
 const Doctor     = require('../models/Doctor');
