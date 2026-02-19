@@ -1,40 +1,52 @@
-const express    = require('express');
-const router     = express.Router();
-const Doctor     = require('../models/Doctor');
-const Gallery    = require('../models/Gallery');
+require('dotenv').config({ path: require('path').join(__dirname, '..', '.env') });
+
+const express     = require('express');
+const router      = express.Router();
+const Doctor      = require('../models/Doctor');
+const Gallery     = require('../models/Gallery');
 const Appointment = require('../models/Appointment');
-const Contact    = require('../models/Contact');
-const Admin      = require('../models/Admin');
-const bcrypt     = require('bcryptjs');
-const jwt        = require('jsonwebtoken');
+const Contact     = require('../models/Contact');
+const Admin       = require('../models/Admin');
+const bcrypt      = require('bcryptjs');
+const jwt         = require('jsonwebtoken');
+const multer      = require('multer');
+const cloudinary  = require('cloudinary').v2;
 const authMiddleware = require('../middleware/auth');
-const cloudinary = require('../config/cloudinary');   // ← ADD
 
-// ── Cloudinary upload middleware (defined here, no separate file needed) ──────
-const multer = require('multer');
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
-const storage = new CloudinaryStorage({
-  cloudinary,
-  params: {
-    folder:          'mrigaayuvets/gallery',
-    allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
-    transformation:  [{ width: 1200, height: 1200, crop: 'limit', quality: 'auto' }]
-  }
+// ── Configure Cloudinary directly (no separate config file needed) ────────────
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key:    process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+// ── Multer memory storage — NO disk, NO multer-storage-cloudinary ─────────────
 const upload = multer({
-  storage,
+  storage: multer.memoryStorage(),
+  limits:  { fileSize: 5 * 1024 * 1024 }, // 5MB
   fileFilter: (req, file, cb) => {
     const allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
     allowed.includes(file.mimetype)
       ? cb(null, true)
       : cb(new Error('Only JPEG, PNG, WEBP, GIF allowed'), false);
-  },
-  limits: { fileSize: 5 * 1024 * 1024 } // 5MB
+  }
 });
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+// ── Helper: upload buffer directly to Cloudinary ──────────────────────────────
+const uploadToCloudinary = (buffer, folder) => {
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream(
+      { folder, resource_type: 'image' },
+      (error, result) => {
+        if (error) reject(error);
+        else resolve(result);
+      }
+    );
+    stream.end(buffer);
+  });
+};
 
 // ─────────────────────────────────────────────────────────────────────────────
 // AUTH
@@ -75,10 +87,9 @@ router.get('/gallery', authMiddleware, async (req, res) => {
   }
 });
 
-// POST /api/admin/gallery — file upload via Cloudinary
+// POST /api/admin/gallery
 router.post('/gallery', authMiddleware, upload.single('image'), async (req, res) => {
   try {
-    // If no file was attached
     if (!req.file) {
       return res.status(400).json({ error: 'No image file provided' });
     }
@@ -86,34 +97,39 @@ router.post('/gallery', authMiddleware, upload.single('image'), async (req, res)
     const { title, description, category } = req.body;
 
     if (!title) {
-      // Delete uploaded file from Cloudinary if title is missing
-      await cloudinary.uploader.destroy(req.file.filename);
       return res.status(400).json({ error: 'Title is required' });
     }
+
+    // Upload buffer to Cloudinary
+    const result = await uploadToCloudinary(
+      req.file.buffer,
+      'mrigaayuvets/gallery'
+    );
 
     const image = new Gallery({
       title:        title.trim(),
       description:  description?.trim() || '',
       category:     category?.toLowerCase().trim() || 'other',
-      url:          req.file.path,      // ← Cloudinary CDN URL
-      cloudinaryId: req.file.filename,  // ← public_id (for deletion)
+      url:          result.secure_url,  // ← Cloudinary CDN URL
+      cloudinaryId: result.public_id,   // ← for deletion
     });
 
     await image.save();
     res.status(201).json({ message: 'Image uploaded successfully', image });
+
   } catch (error) {
-    console.error('Gallery upload error:', error);
+    console.error('Upload error:', error.message);
     res.status(500).json({ error: 'Upload failed: ' + error.message });
   }
 });
 
-// DELETE /api/admin/gallery/:id — also deletes from Cloudinary
+// DELETE /api/admin/gallery/:id
 router.delete('/gallery/:id', authMiddleware, async (req, res) => {
   try {
     const image = await Gallery.findById(req.params.id);
     if (!image) return res.status(404).json({ error: 'Image not found' });
 
-    // Delete from Cloudinary first
+    // Delete from Cloudinary
     if (image.cloudinaryId) {
       await cloudinary.uploader.destroy(image.cloudinaryId);
     }
@@ -121,12 +137,12 @@ router.delete('/gallery/:id', authMiddleware, async (req, res) => {
     await Gallery.findByIdAndDelete(req.params.id);
     res.json({ message: 'Image deleted successfully' });
   } catch (error) {
-    res.status(500).json({ error: 'Server error' });
+    res.status(500).json({ error: 'Delete failed: ' + error.message });
   }
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// DOCTOR ROUTES (unchanged)
+// DOCTOR ROUTES
 // ─────────────────────────────────────────────────────────────────────────────
 
 router.get('/doctors', authMiddleware, async (req, res) => {
@@ -177,7 +193,7 @@ router.patch('/doctors/:id/toggle-status', authMiddleware, async (req, res) => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// APPOINTMENTS & CONTACTS (unchanged)
+// APPOINTMENTS & CONTACTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 router.get('/appointments', authMiddleware, async (req, res) => {
